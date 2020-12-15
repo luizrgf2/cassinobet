@@ -39,7 +39,9 @@ class Roll():
         for cookie in cookies:
             
             self.driver.add_cookie(cookie)
-        self.driver.get('https://casino.bet365.com/Play/LiveRoulette')
+        self.driver.get('https://casino.bet365.com/home')
+        tm(10)
+        self.confirm_ident()      
     def barra(self):
         
         import platform
@@ -51,7 +53,9 @@ class Roll():
         else:
             return '\\'
     def entry_roletes(self):
+        self.driver.get('https://casino.bet365.com/Play/LiveRoulette')
         tm(10)
+        
         
         link = 'https://dl-com.c365play.com/casinoclient.html?game=rol&preferedmode=real&language=en&cashierdomain=www.sgla365.com&ngm=1&wmode=opaque&gametableid=1021&tableid=1021'
         
@@ -63,7 +67,7 @@ class Roll():
         element = None
         
             
-        tm(30)
+        tm(30)        
         element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
                
 
@@ -71,41 +75,64 @@ class Roll():
         tm(1)
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
         tm(1)
-    def get_rouletes(self):
+    def get_roulete(self,name_roulete:str):
         num_roletes = len(self.driver.find_elements_by_class_name('lobby-tables__item'))
+        names_roletes = self.driver.find_elements_by_class_name('lobby-table__name-container')
+        numbers_of_roulete = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')
+        
         tm(5)
         roulete = []
         digits = []
+        for i in range(num_roletes):
+            if names_roletes[i].text.find(name_roulete) != -1:
+                name = names_roletes[i].text
+                color = ''
+                number = 0
+                numeros = numbers_of_roulete[i].find_elements_by_class_name('lobby-table-rol-round-result__item-number')
+                
+                for numero in numeros:
+                    number = int(numero.text)
+                    color = numero.find_element_by_xpath('./..').get_attribute('class')
+                    print
+                    if color.find('red') != -1:
+                        color = 'red'
+                    elif color.find('black') != -1:
+                        color='black'
+                    else:
+                        color = 'green'
+                    print(name,color,number)
+                    file_reader = ''
+                    try:
+                        file_reader = open(name+'.txt','r').read()
+                    except:
+                        print()
+                    
+                    if len(file_reader) == 0:
+                        file_reader = str(number)+','+color
+                    else:
+                        file_reader = file_reader+'\n'+str(number)+','+color
+                    
+                    open(name+'.txt','w').write(file_reader)           
+        try:
+            file_reader = open(name+'.txt','r').read()
+            file_reader = file_reader+'\n'+'exit'
+            open(name+'.txt','w').write(file_reader)   
+        except:
+            print('Não foi encntrada a roleta!')
+                    
 
         
-        for i in range(1,num_roletes+1):
-
-            try:
-                name_rolete = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[2]/div[5]/div[1]').text
-            except:
-                name_rolete = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[3]/div[5]/div[1]').text
-            color = ''
-            for k in range(1,13):
-                
-                base = None
-                try:
-                    base = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[2]/div[4]/div/div[{k}]')
-                except:
-                                                                                /html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[3]/div[4]/div/div[11]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[9]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[5]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[11]
-                color = base.get_attribute('class')
-                if color.find('red') != -1:
-                    color = 'red'
-                elif color.find('black') != -1:
-                    color = 'black'
-                else:
-                    color = 'green'
-                print(name_rolete[i],color)
                 #digits.append({'name':name_rolete[i],'color':color,'number':base.find_element_by_class_name('lobby-table-rol-round-result__item-number')})
-                                             
-                
+    def confirm_ident(self):
+        
+        try:
+            self.driver.find_element_by_id('remindLater').click()                                
+        except Exception as e:
+            print(e)
+        try:
+            self.driver.find_element_by_class_name('regulatory-last-login-modal__button').click()
+        except Exception as e:
+            print(e)
 rol = Roll('luizrgfg',True)
 rol.entry_roletes()
-rol.get_rouletes()
+rol.get_roulete('bet365 Premium Roulette')

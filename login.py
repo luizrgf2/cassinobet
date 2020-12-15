@@ -79,10 +79,10 @@ class Login():
             tm(5)
             try:
                 
-                self.driver.execute_script('var a = document.getElementsByClassName("members-dropdown-component__members-icon-container")')
+                self.driver.find_element_by_class_name('members-dropdown-component__members-icon-container')
             except:
                 os.remove(self.path+self.barra()+'cookie.pkl')
-                self.login()
+                
         self.driver.close()
 login = Login(True,'luizrgfg','Mano010599')
 login.login()

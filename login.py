@@ -84,9 +84,7 @@ class Login():
                 os.remove(self.path+self.barra()+'cookie.pkl')
                 
         self.driver.close()
-login = Login(True,'luizrgfg','Mano010599')
-login.login()
-        
+
         
                 
         

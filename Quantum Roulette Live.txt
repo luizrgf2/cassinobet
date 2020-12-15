@@ -1,0 +1,13 @@
+7,red
+5,red
+31,black
+34,red
+4,black
+15,black
+30,red
+26,black
+7,red
+23,red
+3,red
+3,red
+exit

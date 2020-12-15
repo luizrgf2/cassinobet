@@ -76,6 +76,7 @@ class Roll():
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
         tm(1)
     def get_roulete(self,name_roulete:str):
+        
         num_roletes = len(self.driver.find_elements_by_class_name('lobby-tables__item'))
         names_roletes = self.driver.find_elements_by_class_name('lobby-table__name-container')
         numbers_of_roulete = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')
@@ -133,6 +134,14 @@ class Roll():
             self.driver.find_element_by_class_name('regulatory-last-login-modal__button').click()
         except Exception as e:
             print(e)
-rol = Roll('luizrgfg',True)
-rol.entry_roletes()
-rol.get_roulete('bet365 Premium Roulette')
+    def get_name_roletes(self):
+        tm(10)
+        names = self.driver.find_elements_by_class_name('lobby-table__name-container')
+        text_final = ''
+        for name in names:
+            if len(text_final) == 0:
+                text_final = name.text
+            else:
+                text_final = text_final+'\n'+name.text
+        print(text_final.split('\n'))
+        return text_final.split('\n')

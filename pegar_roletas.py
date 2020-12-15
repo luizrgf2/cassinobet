@@ -8,29 +8,16 @@ from time import sleep as tm
 
 class Roll():
     
-    def __init__(self,user:str,visible:bool):
+    def __init__(self,user:str,visible:bool,driver:webdriver):
         
         import platform
         
         path = ''
-        sistema = platform.system()
-        undetected_chromedriver.install()
+        
         self.path = os.getcwd()+self.barra()+user
         self.user = user
         
-        if sistema == 'Linux':
-            path = os.getcwd()+self.barra()+'chromedriver'
-        else:
-            path = os.getcwd()+self.barra()+'chromedriver.exe'
-        
-        options = webdriver.ChromeOptions()
-        if visible == False:
-            
-            options.add_argument("--headless")
-        options.add_argument('ignore-certificate-errors')
-        options.add_argument('--no-sandbox')
-        
-        self.driver = webdriver.Chrome(executable_path=path,chrome_options=options)
+        self.driver = driver
         
         self.driver.get('https://casino.bet365.com/home')
         
@@ -75,17 +62,18 @@ class Roll():
         tm(1)
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
         tm(1)
-    def get_roulete(self,name_roulete:str):
+    def get_roulete(self,name_roulete:str,path:str):
         
         num_roletes = len(self.driver.find_elements_by_class_name('lobby-tables__item'))
         names_roletes = self.driver.find_elements_by_class_name('lobby-table__name-container')
         numbers_of_roulete = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')
         
-        tm(5)
+        
         roulete = []
         digits = []
         for i in range(num_roletes):
-            if names_roletes[i].text.find(name_roulete) != -1:
+            
+            if names_roletes[i].text == name_roulete:
                 name = names_roletes[i].text
                 color = ''
                 number = 0
@@ -104,7 +92,7 @@ class Roll():
                     print(name,color,number)
                     file_reader = ''
                     try:
-                        file_reader = open(name+'.txt','r').read()
+                        file_reader = open(path+name+'.txt','r').read()
                     except:
                         print()
                     
@@ -113,13 +101,8 @@ class Roll():
                     else:
                         file_reader = file_reader+'\n'+str(number)+','+color
                     
-                    open(name+'.txt','w').write(file_reader)           
-        try:
-            file_reader = open(name+'.txt','r').read()
-            file_reader = file_reader+'\n'+'exit'
-            open(name+'.txt','w').write(file_reader)   
-        except:
-            print('Não foi encntrada a roleta!')
+                    open(path+name+'.txt','w').write(file_reader)           
+
                     
 
         

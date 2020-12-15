@@ -6,30 +6,19 @@ import json
 import undetected_chromedriver
 from time import sleep as tm
 
+
 class Login():
     
-    def __init__(self,visible:bool,user:str,password:str):
-        import platform
+    def __init__(self,visible:bool,user:str,password:str,driver:webdriver):
+        
         
         path = ''
-        sistema = platform.system()
-        undetected_chromedriver.install()
+        
+        
         self.path = os.getcwd()+self.barra()+user
         self.user = user
         self.password = password
-        if sistema == 'Linux':
-            path = os.getcwd()+self.barra()+'chromedriver'
-        else:
-            path = os.getcwd()+self.barra()+'chromedriver.exe'
-        
-        options = webdriver.ChromeOptions()
-        if visible == False:
-            
-            options.add_argument("--headless")
-        options.add_argument('ignore-certificate-errors')
-        options.add_argument('--no-sandbox')
-        
-        self.driver = webdriver.Chrome(executable_path=path,chrome_options=options)
+        self.driver = driver
         
         self.driver.get('https://casino.bet365.com/home')              
     def barra(self):
@@ -83,7 +72,7 @@ class Login():
             except:
                 os.remove(self.path+self.barra()+'cookie.pkl')
                 
-        self.driver.close()
+        
 
         
                 

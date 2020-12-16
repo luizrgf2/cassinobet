@@ -9,6 +9,12 @@ from login import Login
 from pegar_roletas import Roll
 import _thread
 import platform
+from flask import Flask,request
+
+
+
+app = Flask('app')
+
 
 def barra():
         
@@ -82,22 +88,70 @@ def get_roulete(name_roulete:str,driver:webdriver,path:str):
 
         
                 #digits.append({'name':name_rolete[i],'color':color,'number':base.find_element_by_class_name('lobby-table-rol-round-result__item-number')})
-def init(visible:bool,user:str,password:str):
-    driver = webdriver_complete(True)
-    login = Login(visible,user,password,driver)
-    login.login()
+
+
+
+@app.route('/iniciar',methods=['POST'])
+def init():
+    
+    json_file = request.get_json()
+    
+    visible = json_file['visible']
+    user = json_file['user']
+    password = json_file['password']
+
+    try:
+        driver = webdriver_complete(visible)
+        login = Login(visible,user,password,driver)
+        login.login()
+        path = os.getcwd()+barra()+'roletas'+barra()
+        
+        roll = Roll(user,visible,driver)
+        roll.entry_roletes()
+        
+        
+        roll.get_roulete(path)
+        return 'Iniciado com sucesso'
+    except Exception as e:
+        return e
+@app.route('/pegarinfo',methods=['POST'])
+def pegar_infos():
+
     path = os.getcwd()+barra()+'roletas'+barra()
-    
-    roll = Roll(user,visible,driver)
-    roll.entry_roletes()
-    
-    
-    roll.get_roulete(path)
+
+    lista = os.listdir(path)
+
+    files = {
+
+        'items':[
+            
+        ]
+
+    }
 
 
+    for nome in lista:
+
+        file_reader = open(path+nome,'r').read().split('\n')
+        
+        item= [{
+            'nome':nome[0,len(nome)-4],
+            'roleta':file_reader
+        }]
+
+        files['items'].append(item)
+    for nome in lista:
+
+        os.remove(path+nome)
+    
+    
+    if len(files['items']) !=0:
+        return files
+    else:
+        return 'Nada para ser analisado'
                 
 
         
-init(True,'luizrgfg','Mano010599')
+app.run()
     
     

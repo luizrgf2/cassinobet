@@ -1,0 +1,12 @@
+18,red
+16,red
+28,black
+32,red
+26,black
+27,red
+32,red
+7,red
+2,black
+36,red
+33,black
+7,red

@@ -90,15 +90,10 @@ def init(visible:bool,user:str,password:str):
     
     roll = Roll(user,visible,driver)
     roll.entry_roletes()
-    nomes_roletas = roll.get_name_roletes()
     
-    for roleta in nomes_roletas:
-        
-        try:
-            open(path+roleta+'.txt','w').truncate(0)
-        except:
-            print()
-        roll.get_roulete(roleta,path)
+    
+    roll.get_roulete(path)
+
 
                 
 

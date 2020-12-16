@@ -41,12 +41,16 @@ class Roll():
             return '\\'
     def entry_roletes(self):
         self.driver.get('https://casino.bet365.com/Play/LiveRoulette')
-        tm(10)
+        tm(5)
         
-        
-        link = 'https://dl-com.c365play.com/casinoclient.html?game=rol&preferedmode=real&language=en&cashierdomain=www.sgla365.com&ngm=1&wmode=opaque&gametableid=1021&tableid=1021'
-        
-        self.driver.get(link)
+        frame = self.driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/main/div[1]/iframe')
+
+        self.driver.switch_to_frame(frame)
+
+        url = self.driver.find_element_by_id('gamecontent').get_attribute('src')
+
+        self.driver.get(url)
+
         
         tm(3)
         
@@ -54,59 +58,71 @@ class Roll():
         element = None
         
             
-        tm(30)        
-        element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
-               
-
+        while True:
+            try:       
+                element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
+                break
+            except:
+                print()
+        tm(3)
         element.click()
         tm(1)
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
-        tm(1)
-    def get_roulete(self,name_roulete:str,path:str):
+        tm(5)
+    def get_roulete(self,path):
         
-        num_roletes = len(self.driver.find_elements_by_class_name('lobby-tables__item'))
-        names_roletes = self.driver.find_elements_by_class_name('lobby-table__name-container')
-        numbers_of_roulete = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')
+
+        text =str(self.driver.page_source)
+        open('teste.txt','w').write(text)
+
+
+        name_aux = text.split('class="lobby-table__name-container" data-theme="tableNamesColor_color">')
+        get_nums_aux = text.split('class="lobby-table__features"><div class="lobby-table-features"></div>')
+        area_numbs = []
+        text_final = ''
+        final_text = ''
+        last_item = ''
+        numbs = []
+        colors = []
         
-        
-        roulete = []
-        digits = []
-        for i in range(num_roletes):
+        name_final = []
+        for i in range(1,len(name_aux)):
             
-            if names_roletes[i].text == name_roulete:
-                name = names_roletes[i].text
-                color = ''
-                number = 0
-                numeros = numbers_of_roulete[i].find_elements_by_class_name('lobby-table-rol-round-result__item-number')
-                
-                for numero in numeros:
-                    number = int(numero.text)
-                    color = numero.find_element_by_xpath('./..').get_attribute('class')
-                    print
-                    if color.find('red') != -1:
-                        color = 'red'
-                    elif color.find('black') != -1:
-                        color='black'
-                    else:
-                        color = 'green'
-                    print(name,color,number)
-                    file_reader = ''
-                    try:
-                        file_reader = open(path+name+'.txt','r').read()
-                    except:
-                        print()
-                    
-                    if len(file_reader) == 0:
-                        file_reader = str(number)+','+color
-                    else:
-                        file_reader = file_reader+'\n'+str(number)+','+color
-                    
-                    open(path+name+'.txt','w').write(file_reader)           
-
-                    
-
+            name_final.append(name_aux[i].split('</div>')[0])
+            area_numbs.append(get_nums_aux[i].split('class="lobby-table__name-container" data-theme="tableNamesColor_color">')[0])
         
-                #digits.append({'name':name_rolete[i],'color':color,'number':base.find_element_by_class_name('lobby-table-rol-round-result__item-number')})
+        for i in range(len(area_numbs)):
+            aux = area_numbs[i].split('class="lobby-table-rol-round-result__item-number">')
+            for au in aux:
+                numero = au.split('</')[0]
+                if len(numero) >0:
+                    numbs.append(au.split('</')[0])
+                    
+            aux = area_numbs[i].split('class="lobby-table-rol-round-result__item lobby-table-rol-round-result__item_') 
+        
+
+            for au in aux:
+                
+                color = au
+                
+                if color.find('red') != -1:
+                    colors.append('red')
+                if color.find('black') != -1:
+                    colors.append('black')
+                if color.find('green') != -1:
+                    colors.append('green')
+            text_final =''
+            print(len(colors))
+            print(len(numbs))
+            for k in range(0,12):
+
+                if len(text_final) == 0:
+                    text_final = numbs[k]+','+colors[k]
+                else:
+                    text_final = text_final+'\n'+numbs[k]+','+colors[k]
+            colors =[]
+            numbs = []
+            open(path+name_final[i]+'.txt','w').write(text_final)
     def confirm_ident(self):
         
         try:

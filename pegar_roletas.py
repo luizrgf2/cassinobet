@@ -53,7 +53,15 @@ class Roll():
     def entry_roletes(self):
         tm(10)
         
-        link = 'https://dl-com.c365play.com/casinoclient.html?game=rol&preferedmode=real&language=en&cashierdomain=www.sgla365.com&ngm=1&wmode=opaque&gametableid=1021&tableid=1021'
+        link = ''
+        
+        while True:
+            try:
+                self.driver.switch_to_frame(self.driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/main/div[1]/iframe'))
+                link = self.driver.find_element_by_id('gamecontent').get_attribute('src')
+                break
+            except Exception as e:
+                print(e)
         
         self.driver.get(link)
         
@@ -63,49 +71,72 @@ class Roll():
         element = None
         
             
-        tm(30)
-        element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
-               
-
+        while True:
+            
+            try:
+                element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
+                break
+            except:
+                print()   
+        tm(3)
         element.click()
         tm(1)
         self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
-        tm(1)
-    def get_rouletes(self):
-        num_roletes = len(self.driver.find_elements_by_class_name('lobby-tables__item'))
-        tm(5)
-        roulete = []
-        digits = []
+        tm(10)
+    def get_names(self):
+
+        text = str(self.driver.page_source)
+        open('tete.txt','w').write(text)
+        
+        corte_principal_name = text.split('class="lobby-table__name-container"')
+        corte_principal_name.pop(0)
+        names = []
+        
+        
+        for i in range(len(corte_principal_name)):
+            
+            names.append(corte_principal_name[i].split('">')[1].split('</div><div')[0])
+        
+        return names
+    def check_padroes(self):
+        
+        text = str(self.driver.page_source)
+        open('tete.txt','w').write(text)
+        corte_principal = text.split('lobby-table-rol-round-result__container"><div')
+        corte_principal.pop(0)
+        nums = []
+        
+        
+        
+            
+            
+        
+        for i in range(len(corte_principal)):
+            
+            nums.append(str(corte_principal[i].split('item-number">')[1].split('</')[0])+' '+str(corte_principal[i].split('lobby-table-rol-round-result__item_')[1].split('">')[0]))
+        print(nums)
+        
+    def alternada(self,item:str):
+        
+        
+        
+        
+        
+        
 
         
-        for i in range(1,num_roletes+1):
+        
 
-            try:
-                name_rolete = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[2]/div[5]/div[1]').text
-            except:
-                name_rolete = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[3]/div[5]/div[1]').text
-            color = ''
-            for k in range(1,13):
-                
-                base = None
-                try:
-                    base = self.driver.find_element_by_xpath(f'/html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[{i}]/div/div/div[2]/div[4]/div/div[{k}]')
-                except:
-                                                                                /html/body/div[1]/div/div[3]/div[1]/div[1]/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[3]/div[4]/div/div[11]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[9]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[5]
-                                                            /html/body/div[1]/div/div[3]/div[1]/div/div[2]/div[1]/div/div[1]/div/div/div[1]/div/div/div[2]/div[4]/div/div[11]
-                color = base.get_attribute('class')
-                if color.find('red') != -1:
-                    color = 'red'
-                elif color.find('black') != -1:
-                    color = 'black'
-                else:
-                    color = 'green'
-                print(name_rolete[i],color)
-                #digits.append({'name':name_rolete[i],'color':color,'number':base.find_element_by_class_name('lobby-table-rol-round-result__item-number')})
-                                             
+        
+           
+
+        
+        
+            
+            
+
                 
 rol = Roll('luizrgfg',True)
 rol.entry_roletes()
-rol.get_rouletes()
+rol.check_padroes(14)
+

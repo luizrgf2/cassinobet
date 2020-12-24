@@ -130,68 +130,68 @@ class Roll():
 
 
 
-                cursor.execute(f'SELECT value FROM roletas WHERE name="{names[i]}"')
 
-                value_actual = str(cursor.fetchall())
-                value_actual = value_actual[3:len(value_actual)-4]
-                print(value_actual)
-                if value_actual != 'None':
-                    print(nums[i], value_actual, len(nums[i]), len(value_actual))
-                    if nums[i].find(value_actual) == -1 :
-                        
+                    
 
-                        cursor.execute(f'UPDATE roletas SET value="{nums[i]}" WHERE name="{names[i]}"')
-                        conec.commit()
-                        cursor.close()
-                        conec.close()
-
-                    else:
-                        cursor.execute(f'UPDATE roletas SET value="None" WHERE name="{names[i]}"')
-                        conec.commit()
-                        cursor.close()
-                        conec.close()
+                cursor.execute(f'UPDATE roletas SET value="{nums[i]}" WHERE name="{names[i]}"')
+                conec.commit()
                 
-            
+                    
+                cursor.close()
+                conec.close()
+
+
+   
     def alternada(self,giro:int):
 
-         while True:
+        nomes = self.get_names()
+        while True:
 
-            
-            names = self.get_names()
-
-            for name in names:
+            for name in nomes:
 
                 self.cursor.execute(f'SELECT value FROM roletas WHERE name="{name}"')
-
-                value = str(self.cursor.fetchall())
-
-                value = value[3:len(value)-4]
-
-                if value != 'None':
-
-                    
-                    self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
-                    roleta = str(self.cursor.fetchall())
-                    roleta = roleta[3:len(roleta)-4]
-                    rolete_final = ''
-                    if roleta == 'None':
-                        rolete_final = value
-                    else:
-                        rolete_final = roleta+','+value
-                    self.cursor.execute(f"UPDATE roletas SET roleta='{rolete_final}' WHERE name='{name}'")
                 
+                value = ''
+                
+                try:
+                    value = self.cursor.fetchone()[0]
+                except:
+                    value = self.cursor.fetchone()
+
+                
+                
+                self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
+                try:
+                    roleta = self.cursor.fetchone()[0]
+                except:
+                    roleta = self.cursor.fetchone()
+                
+                if roleta == None:
+
+                    self.cursor.execute(f'UPDATE roletas SET roleta="{value}" WHERE name="{name}"')
+                    self.conec.commit()
+                elif roleta.split(',')[-1] != value :
+                    
+                    resut = roleta+','+value
+
+                    self.cursor.execute(f'UPDATE roletas SET roleta="{resut}" WHERE name="{name}"')
                     self.conec.commit()
 
-                    self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
-                    
+                print(name,self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"').fetchone())
 
-                    tm(0.3)            
+
+                
+
+
+
+                
     def init(self):
 
         self.entry_roletes()
 
         _thread.start_new_thread(self.check_padroes,())
         _thread.start_new_thread(self.detele_values,())
+        self.alternada(15)
 
         self.alternada(15)
     def detele_values(self):

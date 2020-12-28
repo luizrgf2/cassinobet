@@ -45,6 +45,17 @@ class Roll():
             
             self.driver.add_cookie(cookie)
         self.driver.get('https://casino.bet365.com/Play/LiveRoulette')
+
+        self.cursor.execute(f'UPDATE roletas SET alternada=Null')
+        self.cursor.execute(f'UPDATE roletas SET dalternada=Null')
+        self.cursor.execute(f'UPDATE roletas SET talternada=Null')
+        self.cursor.execute(f'UPDATE roletas SET bunico=Null')
+        self.cursor.execute(f'UPDATE roletas SET balternada=Null')
+        self.cursor.execute(f'UPDATE roletas SET bduplo=Null')
+        self.conec.commit()
+        tm(1)
+        
+        
     def barra(self):
         
         import platform
@@ -107,7 +118,7 @@ class Roll():
         
         
         return names
-    def check_padroes(self):
+    def check_updates_in_roletes(self):
         
         while True:
             text = str(self.driver.page_source)
@@ -139,84 +150,189 @@ class Roll():
                     
                 cursor.close()
                 conec.close()
-
-
-   
-    def alternada(self,giro:int):
+                tm(0.1)
+            tm(3)
+    def verify_updates(self,alternada:int,dalternada:int,talternada:int,bunico:int,balternada:int,bduplo:int):
 
         nomes = self.get_names()
+        possibilidades = ['alternada','dalternada','talternada','bunico','balternada','bduplo']
+
         while True:
 
             for name in nomes:
 
-                self.cursor.execute(f'SELECT value FROM roletas WHERE name="{name}"')
                 
-                value = ''
-                
-                try:
-                    value = self.cursor.fetchone()[0]
-                except:
-                    value = self.cursor.fetchone()
+                for possibilidade in possibilidades:
 
-                
-                
-                self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
-                try:
-                    roleta = self.cursor.fetchone()[0]
-                except:
-                    roleta = self.cursor.fetchone()
-                
-                if roleta == None:
-
-                    self.cursor.execute(f'UPDATE roletas SET roleta="{value}" WHERE name="{name}"')
-                    self.conec.commit()
-                elif roleta.split(',')[-1] != value :
+                    self.cursor.execute(f'SELECT value FROM roletas WHERE name="{name}"')
                     
-                    resut = roleta+','+value
+                    value = ''
+                    
+                    try:
+                        value = self.cursor.fetchone()[0]
+                    except:
+                        value = self.cursor.fetchone()
 
-                    self.cursor.execute(f'UPDATE roletas SET roleta="{resut}" WHERE name="{name}"')
-                    self.conec.commit()
+                    
+                    
+                    self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                    try:
+                        roleta = self.cursor.fetchone()[0]
+                    except:
+                        roleta = self.cursor.fetchone()
+                    
+                    if roleta == None:
 
-                print(name,self.cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"').fetchone())
+                        self.cursor.execute(f'UPDATE roletas SET {possibilidade}="{value}" WHERE name="{name}"')
+                        self.conec.commit()
+                    elif roleta.split(',')[-1] != value :
+                        
+                        resut = roleta+','+value
 
+                        self.cursor.execute(f'UPDATE roletas SET {possibilidade}="{resut}" WHERE name="{name}"')
+                        self.conec.commit()
+                    #grupos de if para verificar os giros
+                    if possibilidade == possibilidades[0]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = alternada
 
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
+
+                    elif possibilidade == possibilidades[1]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = dalternada
+
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
+
+                    elif possibilidade == possibilidades[2]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = talternada
+
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
+
+                    elif possibilidade == possibilidades[3]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = bunico
+
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
+
+                    elif possibilidade == possibilidades[4]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = bduplo
+
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
+
+                    elif possibilidade == possibilidades[5]:
+                        self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"')
+                        
+                        try:
+                            roleta = self.cursor.fetchone()[0]
+                        except:
+                            roleta = self.cursor.fetchone()
+                        tamanho = balternada
+
+                        if len(str(roleta).split(',')) == tamanho:
+                             self.cursor.execute(f'UPDATE roletas SET {possibilidade}=Null')
                 
 
-
-
-                
-    def init(self):
-
-        self.entry_roletes()
-
-        _thread.start_new_thread(self.check_padroes,())
-        _thread.start_new_thread(self.detele_values,())
-        self.alternada(15)
-
-        self.alternada(15)
+                    print(name,self.cursor.execute(f'SELECT {possibilidade} FROM roletas WHERE name="{name}"').fetchone())   
+        tm(1.5)         
     def detele_values(self):
 
         names = self.get_names()
         conec = sqlite3.connect('roletas.db')
         cursor = conec.cursor()
+        while True:
+            for name in names:
+                cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
+                roleta = str(cursor.fetchall())
+                roleta = roleta[2:len(roleta)-3]
 
-        for name in names:
-            cursor.execute(f'SELECT roleta FROM roletas WHERE name="{name}"')
-            roleta = str(cursor.fetchall())
-            roleta = roleta[2:len(roleta)-3]
-
-            if roleta.find('None') == -1:
+                if roleta.find('None') == -1:
 
 
-                tamanho = len(roleta.split(','))-1
+                    tamanho = len(roleta.split(','))-1
 
-                if tamanho >=20:
+                    if tamanho >=20:
 
-            
-                    cursor.execute(f'UPDATE roletas SET roleta=Null WHERE name="{name}"')
-                    conec.commit()
+                
+                        cursor.execute(f'UPDATE roletas SET roleta=Null WHERE name="{name}"')
+                        conec.commit()
+    def alternado(self,giros:int,name:str):
+        
+        
+        controller = False
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+
+
+        roleta = None
+                
+        try:
+            roleta = cursor.execute(f'SELECT alternada FROM roletas WHERE name={name}').fetchone()[0]
+        except:
+            roleta = cursor.execute(f'SELECT alternada FROM roletas WHERE name={name}').fetchone()
+
+        if roleta != None:
+            numb = str(roleta).split(',')
+
+            for i in range(len(numb)):
+
+                if i%2 == 0:
+
+                    if numb[i].find('black') == -1:
+                        cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name={name}')
+                        conec.commit()
+                        tm(0.2)
+                        return None
+                elif i%2 !=0:
+
+                    if numb[i].find('red') == -1:
+                        cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name={name}')
+                        conec.commit()
+                        tm(0.2)
+                        return None
+                elif len(numb) == giros-1:
+                    return name
+    def init(self):
+
+        self.entry_roletes()
+        _thread.start_new_thread(self.check_updates_in_roletes,())
+        
         
 
+
+        self.verify_updates(4,12,12,12,12,12)
 
 
 

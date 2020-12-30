@@ -11,7 +11,7 @@ cursor = cone.cursor()
 #cursor.execute('INSERT INTO teste1(nome) VALUES("luz fellipe")')
 #cursor.execute('CREATE TABLE roletas(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255), value VARCHAR(255))')
 
-cursor.execute(f'SELECT alternada FROM roletas')
+cursor.execute(f'SELECT * FROM roletas')
 cone.commit()
 
 xy = cursor.fetchall()

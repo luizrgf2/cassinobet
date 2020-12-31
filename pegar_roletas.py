@@ -120,14 +120,15 @@ class Roll():
         
         return names
     def check_updates_in_roletes(self):
-        
+        tm(5)
         conec = sqlite3.connect('roletas.db') #abrindo banco de dados para ler in inserir novas informaçoes
         cursor = conec.cursor()
         while True:
             text = str(self.driver.page_source) #pegando html da roleta
             
-            corte_principal = text.split('lobby-table-rol-round-result__container"><div') #separando onde estao os ultimos numeros
+            corte_principal = text.split('class="lobby-table-rol-round-result__container"') #separando onde estao os ultimos numeros
             corte_principal.pop(0)
+            open('teste.txt','w',encoding='utf8').write(text)
            
             
                 
@@ -137,12 +138,17 @@ class Roll():
 
                 
                 name = names[i]
-
-                num_atual = str(corte_principal[i].split('item-number">')[1].split('</')[0])+' '+str(corte_principal[i].split('lobby-table-rol-round-result__item_')[1].split('">')[0])
+                num_atual = 0
+                try:
+                    num_atual = str(corte_principal[i].split('last"')[1].split('number">')[1].split('</div>')[0])
+                except:
+                    num_atual =  str(corte_principal[i].split('decoration"')[1].split('number">')[1].split('</div>')[0])
+                print(name,num_atual)
+                tm(0.5)
                 
-
+                '''
                 cursor.execute(f'SELECT alternada, dalternada, talternada, bunico, balternada, bduplo FROM roletas WHERE name="{name}"')
-                
+                print(name,num_atual)
                 dados = cursor.fetchone()
                 
                 alternada = dados[0]
@@ -242,7 +248,8 @@ class Roll():
                         insert = bduplo+','+num_atual
                         cursor.execute(f'UPDATE roletas SET bduplo="{insert}" WHERE name="{name}"')
                         conec.commit() 
-                tm(1)     
+                tm(1) 
+            '''    
     def detele_values(self):
 
         names = self.get_names()
@@ -304,13 +311,65 @@ class Roll():
                         conec.commit()
                         if alternada_encontrado == True:
                             open('alternada.txt','w',encoding='utf8').write(name)
+    def duplo_alternada(self,giro):
+        tm(4)
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+        
+
+
+        while True:
+            for name in names:
+
+                cursor.execute(f'SELECT dalternada FROM roletas WHERE name="{name}"')
+                roleta = cursor.fetchone()[0]
+                controler = False
+                alternada_encontrado = True
+                print('Dupla_Alternada('+name+')',roleta)
+                if roleta != None:
+
+                    roll = roleta.split(',')
+
+                    if len(roll) >=giro -1:
+
+                        for i in range(giro-1):
+                            print(roll[i])
+
+                            if controler == False:
+                                print('black')
+                                if roll[i].find('black') == -1:
+
+                                    alternada_encontrado = False
+
+                                if i%2 != 0:
+
+                                    controler = True
+                            else:
+                                print('red')
+                                if roll[i].find('red') == -1:
+
+                                    alternada_encontrado = False
+
+                                if i%2 != 0:
+
+                                    controler = False
+
+
+                        cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name="{name}"')
+                        conec.commit()
+                        if alternada_encontrado == True:
+                            open('dupla_alternada.txt','w',encoding='utf8').write(name)
     def init(self):
 
         self.entry_roletes()
         _thread.start_new_thread(self.check_updates_in_roletes,())
-        _thread.start_new_thread(self.alternada,())
+        #_thread.start_new_thread(self.alternada,(4,))
+        #_thread.start_new_thread(self.duplo_alternada,(5,))
+
 
         while True:
+            tm(100)
             print()
     
 

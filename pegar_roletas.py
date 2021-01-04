@@ -643,7 +643,182 @@ class Roll():
 
                         if controll == True:
                             open('bloco_alternada.txt','w',encoding='utf8').write(name) 
+    def bloco_duplo(self,giro):
+        tm(4)
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+            
+        while True:
+            for name in names:
+
+                ini_controll = 0
+                init_controll = 0
+                check_bloco_actual = False
+                controll = True
+                
+                cursor.execute(f'SELECT bduplo FROM roletas WHERE name="{name}"')
+                tm(0.3)
+                roleta = cursor.fetchone()[0]
+                
+                print('Bloco_Duplo('+name+')',roleta)
+                if roleta != None:
+
+                    roll = roleta.split(',')
+                    roll.reverse()
+
+                    
+                    if len(roll) >=giro -1:
+                        # descobrir qual bloco pertence o primeiro numero
+                        
+                        
+                        if int(roll[0].split(' ')[0]) >= 1 and int(roll[0].split(' ')[0]) <= 12:
+
+                            ini_controll = 0
+
+                        elif int(roll[0].split(' ')[0]) >=13 and int(roll[0].split(' ')[0]) <= 24:
+
+                            ini_controll = 1
+
+                        elif int(roll[0].split(' ')[0]) >= 25 and int(roll[0].split(' ')[0]) <= 36:
+
+                            ini_controll = 2
+                        
+                        
+                        
+                        #descobrir qual bloco pertence o numero 2
+
+                        if int(roll[2].split(' ')[0]) >= 1 and int(roll[2].split(' ')[0]) <= 12:
+
+                            init_controll = 0
+
+                        elif int(roll[2].split(' ')[0]) >=13 and int(roll[2].split(' ')[0]) <= 24:
+
+                            init_controll = 1
+
+                        elif int(roll[2].split(' ')[0]) >= 25 and int(roll[2].split(' ')[0]) <= 36:
+
+                            init_controll = 2
+
+                        ###################
+
+                        for i in range(giro-1):
+
+                            controller = 0
+
+                            if check_bloco_actual == False:
+
+                                if ini_controll == 0:
+                                    
+                                    controller = 0
+
+                                    if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+
+                                        print('bloco 1')
+                                        
+
+                                    else:
+
+                                        controll = False
+                                    
+                                elif ini_controll == 1:
+
+                                    controller = 1
+
+                                    if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+
+                                        print('bloco 2')
+                                    
+                                    else:
+
+                                        controll = False
+
+                                elif ini_controll == 2:
+
+                                    controller = 2
+
+                                    if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+
+                                        print('bloco 3')
+
+                                    else:
+
+                                        controll = False
+
+                                if i % 2 != 0:
+
+                                    check_bloco_actual = True
                                 
+                                if controller != ini_controll:
+
+                                    controll = False
+                            
+                            if check_bloco_actual == True:
+
+                                if init_controll == 0:
+                                    
+                                    controller = 0
+
+                                    if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+
+                                        print('bloco 1')
+                                        
+
+                                    else:
+
+                                        controll = False
+                                    
+                                elif init_controll == 1:
+
+                                    controller = 1
+
+                                    if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+
+                                        print('bloco 2')
+                                    
+                                    else:
+
+                                        controll = False
+
+                                elif init_controll == 2:
+
+                                    controller = 2
+
+                                    if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+
+                                        print('bloco 3')
+
+                                    else:
+
+                                        controll = False
+
+                                if i % 2 != 0:
+
+                                    check_bloco_actual = False
+                                
+                                if controller != ini_controll or ini_controll == init_controll:
+
+                                    controll = False
+                        tm(0.2)
+                        cursor.execute(f'UPDATE roletas SET bduplo=Null WHERE name="{name}"')
+                        conec.commit()
+
+                        if controll == True:
+                            open('bloco_duplo.txt','w',encoding='utf8').write(name) 
+
+
+
+
+
+
+
+
+                            
+                            
+                            
+
+
+
 
 
 
@@ -662,7 +837,8 @@ class Roll():
         #_thread.start_new_thread(self.alternada,(4,))
         #_thread.start_new_thread(self.duplo_alternada,(5,))
         #_thread.start_new_thread(self.tripla_alternada,(4,))
-        _thread.start_new_thread(self.bloco_alternado,(3,))
+        #_thread.start_new_thread(self.bloco_alternado,(3,))
+        _thread.start_new_thread(self.bloco_duplo,(5,))
 
 
         while True:

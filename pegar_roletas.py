@@ -140,15 +140,17 @@ class Roll():
                 name = names[i]
                 num_atual = 0
                 try:
-                    num_atual = str(corte_principal[i].split('last"')[1].split('number">')[1].split('</div>')[0])
+                    num_atual = str(corte_principal[i].split('last"')[1].split('number">')[1].split('</div>')[0])+' '+str(corte_principal[i].split('__item_last"')[0].split('_item_')[-1].split(' ')[0])
+                    
                 except:
-                    num_atual =  str(corte_principal[i].split('decoration"')[1].split('number">')[1].split('</div>')[0])
-                print(name,num_atual)
-                tm(0.5)
+                    print('O Html da dessa tabela está temporariamente modificado!...')
+                    cursor.execute(f'UPDATE roletas SET alternada=Null,dalternada=Null,talternada=Null,bunico=Null,balternada=Null,bduplo=Null WHERE name="{name}"')
+                    conec.commit()
                 
-                '''
+                
+                
                 cursor.execute(f'SELECT alternada, dalternada, talternada, bunico, balternada, bduplo FROM roletas WHERE name="{name}"')
-                print(name,num_atual)
+                
                 dados = cursor.fetchone()
                 
                 alternada = dados[0]
@@ -248,8 +250,8 @@ class Roll():
                         insert = bduplo+','+num_atual
                         cursor.execute(f'UPDATE roletas SET bduplo="{insert}" WHERE name="{name}"')
                         conec.commit() 
-                tm(1) 
-            '''    
+                tm(0.2) 
+               
     def detele_values(self):
 
         names = self.get_names()
@@ -323,6 +325,7 @@ class Roll():
             for name in names:
 
                 cursor.execute(f'SELECT dalternada FROM roletas WHERE name="{name}"')
+                tm(0.1)
                 roleta = cursor.fetchone()[0]
                 controler = False
                 alternada_encontrado = True
@@ -330,11 +333,11 @@ class Roll():
                 if roleta != None:
 
                     roll = roleta.split(',')
+                    roll.reverse()
 
                     if len(roll) >=giro -1:
 
                         for i in range(giro-1):
-                            print(roll[i])
 
                             if controler == False:
                                 print('black')
@@ -345,7 +348,7 @@ class Roll():
                                 if i%2 != 0:
 
                                     controler = True
-                            else:
+                            elif controler == True:
                                 print('red')
                                 if roll[i].find('red') == -1:
 
@@ -356,16 +359,106 @@ class Roll():
                                     controler = False
 
 
-                        cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name="{name}"')
+                            
+
+                        tm(0.1)
+                        cursor.execute(f'UPDATE roletas SET dalternada=Null WHERE name="{name}"')
                         conec.commit()
+                        
+                        if roll[0].find('red') != -1:
+
+                            alternada_encontrado = False
+                        
                         if alternada_encontrado == True:
                             open('dupla_alternada.txt','w',encoding='utf8').write(name)
+            
+    def tripla_alternada(self,giro):
+        tm(4)
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+        
+        
+
+        while True:
+            for name in names:
+
+                ini_controll = 2
+                controll = True
+                
+                cursor.execute(f'SELECT talternada FROM roletas WHERE name="{name}"')
+                tm(0.1)
+                roleta = cursor.fetchone()[0]
+                alternada_encontrado = True
+                print('Tripla_Alternada('+name+')',roleta)
+                if roleta != None:
+
+                    roll = roleta.split(',')
+                    roll.reverse()
+
+                    if len(roll) >=giro -1:
+
+                        for i in range(giro-1):
+                            
+                            if i == 0:
+
+                                if roll[i].find('red'):
+
+                                    controll = True
+                                else:
+                                    controll = False
+
+                            if i == ini_controll:
+
+                                ini_controll = ini_controll + 3
+
+                                if controll == False:
+
+                                    if roll[i].find('red') == -1:
+
+                                        alternada_encontrado = False
+
+                                    
+
+                                else:
+
+                                    if roll[i].find('black') == -1:
+                                        
+                                        alternada_encontrado = False
+                            else:
+                        
+                                if controll == True:
+
+                                    if roll[i].find('red') == -1:
+
+                                        alternada_encontrado = False
+
+                                    
+
+                                else:
+
+                                    if roll[i].find('black') == -1:
+                                        
+                                        alternada_encontrado = False
+
+
+
+
+                            
+                        tm(0.1)
+                        cursor.execute(f'UPDATE roletas SET talternada=Null WHERE name="{name}"')
+                        conec.commit()
+
+                        if alternada_encontrado == True:
+                            open('tripla_alternada.txt','w',encoding='utf8').write(name)
+                            
     def init(self):
 
         self.entry_roletes()
         _thread.start_new_thread(self.check_updates_in_roletes,())
         #_thread.start_new_thread(self.alternada,(4,))
         #_thread.start_new_thread(self.duplo_alternada,(5,))
+        _thread.start_new_thread(self.tripla_alternada,(4,))
 
 
         while True:

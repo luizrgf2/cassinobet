@@ -54,9 +54,7 @@ class Roll():
         self.cursor.execute(f'UPDATE roletas SET balternada=Null')
         self.cursor.execute(f'UPDATE roletas SET bduplo=Null')
         self.conec.commit()
-        tm(1)
-        
-        
+        tm(1)   
     def barra(self):
         
         import platform
@@ -273,577 +271,550 @@ class Roll():
                         cursor.execute(f'UPDATE roletas SET roleta=Null WHERE name="{name}"')
                         conec.commit()
     def alternada(self,giro):
-        tm(4)
+        
         conec = sqlite3.connect('roletas.db')
         cursor = conec.cursor()
         names = self.get_names()
         
 
 
-        while True:
-            for name in names:
+        
+        for name in names:
 
-                cursor.execute(f'SELECT alternada FROM roletas WHERE name="{name}"')
-                roleta = cursor.fetchone()[0]
-                alternada_encontrado = True
-                print('Alternada('+name+')',roleta)
-                if roleta != None:
+            cursor.execute(f'SELECT alternada FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            alternada_encontrado = True
+            print('Alternada('+name+')',roleta)
+            if roleta != None:
 
-                    roll = roleta.split(',')
+                roll = roleta.split(',')
 
-                    if len(roll) >=giro -1:
+                if len(roll) >=giro -1:
 
-                        for i in range(giro-1):
-                            print(roll[i])
-                            if i%2 == 0:
+                    for i in range(giro-1):
+                        print(roll[i])
+                        if i%2 == 0:
 
-                                if roll[i].find('black') == -1:
+                            if roll[i].find('black') == -1:
 
-                                    alternada_encontrado = False
+                                alternada_encontrado = False
 
-                            if i%2 !=0:
+                        if i%2 !=0:
 
-                                if roll[i].find('red') == -1:
+                            if roll[i].find('red') == -1:
 
-                                    alternada_encontrado = False
+                                alternada_encontrado = False
 
-
-                        cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name="{name}"')
-                        conec.commit()
-                        if alternada_encontrado == True:
-                            open('alternada.txt','w',encoding='utf8').write(name)
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET alternada=Null WHERE name="{name}"')
+                    conec.commit()
+                    if alternada_encontrado == True:
+                        open('alternada.txt','w',encoding='utf8').write(name)
     def duplo_alternada(self,giro):
-        tm(4)
+       
         conec = sqlite3.connect('roletas.db')
         cursor = conec.cursor()
         names = self.get_names()
         
+        for name in names:
+
+            cursor.execute(f'SELECT dalternada FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            controler = False
+            alternada_encontrado = True
+            print('Dupla_Alternada('+name+')',roleta)
+            if roleta != None:
+
+                roll = roleta.split(',')
+                roll.reverse()
+
+                if len(roll) >=giro -1:
+
+                    for i in range(giro-1):
+
+                        if controler == False:
+                            print('black')
+                            if roll[i].find('black') == -1:
+
+                                alternada_encontrado = False
+
+                            if i%2 != 0:
+
+                                controler = True
+                        elif controler == True:
+                            print('red')
+                            if roll[i].find('red') == -1:
+
+                                alternada_encontrado = False
+
+                            if i%2 != 0:
+
+                                controler = False
 
 
-        while True:
-            for name in names:
+                        
 
-                cursor.execute(f'SELECT dalternada FROM roletas WHERE name="{name}"')
-                tm(0.1)
-                roleta = cursor.fetchone()[0]
-                controler = False
-                alternada_encontrado = True
-                print('Dupla_Alternada('+name+')',roleta)
-                if roleta != None:
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET dalternada=Null WHERE name="{name}"')
+                    conec.commit()
+                    
+                    if roll[0].find('red') != -1:
 
-                    roll = roleta.split(',')
-                    roll.reverse()
+                        alternada_encontrado = False
+                    
+                    if alternada_encontrado == True:
+                        open('dupla_alternada.txt','w',encoding='utf8').write(name)         
+    def tripla_alternada(self,giro):
+        
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+        
+        
 
-                    if len(roll) >=giro -1:
+       
+        for name in names:
 
-                        for i in range(giro-1):
+            ini_controll = 2
+            controll = True
+            
+            cursor.execute(f'SELECT talternada FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            alternada_encontrado = True
+            print('Tripla_Alternada('+name+')',roleta)
+            if roleta != None:
 
-                            if controler == False:
-                                print('black')
-                                if roll[i].find('black') == -1:
+                roll = roleta.split(',')
+                roll.reverse()
 
-                                    alternada_encontrado = False
+                if len(roll) >=giro -1:
 
-                                if i%2 != 0:
+                    for i in range(giro-1):
+                        
+                        if i == 0:
 
-                                    controler = True
-                            elif controler == True:
+                            if roll[i].find('red') != -1:
+
                                 print('red')
+
+                                controll = True
+                            else:
+                                controll = False
+                                print('black')
+                        if i == ini_controll:
+
+                            ini_controll = ini_controll + 3
+
+                            if controll == False:
+
                                 if roll[i].find('red') == -1:
 
                                     alternada_encontrado = False
 
-                                if i%2 != 0:
-
-                                    controler = False
-
-
-                            
-
-                        tm(0.1)
-                        cursor.execute(f'UPDATE roletas SET dalternada=Null WHERE name="{name}"')
-                        conec.commit()
-                        
-                        if roll[0].find('red') != -1:
-
-                            alternada_encontrado = False
-                        
-                        if alternada_encontrado == True:
-                            open('dupla_alternada.txt','w',encoding='utf8').write(name)         
-    def tripla_alternada(self,giro):
-        tm(4)
-        conec = sqlite3.connect('roletas.db')
-        cursor = conec.cursor()
-        names = self.get_names()
-        
-        
-
-        while True:
-            for name in names:
-
-                ini_controll = 2
-                controll = True
-                
-                cursor.execute(f'SELECT talternada FROM roletas WHERE name="{name}"')
-                tm(0.3)
-                roleta = cursor.fetchone()[0]
-                alternada_encontrado = True
-                print('Tripla_Alternada('+name+')',roleta)
-                if roleta != None:
-
-                    roll = roleta.split(',')
-                    roll.reverse()
-
-                    if len(roll) >=giro -1:
-
-                        for i in range(giro-1):
-                            
-                            if i == 0:
-
-                                if roll[i].find('red') != -1:
-
-                                    print('red')
-
-                                    controll = True
-                                else:
-                                    controll = False
-                                    print('black')
-                            if i == ini_controll:
-
-                                ini_controll = ini_controll + 3
-
-                                if controll == False:
-
-                                    if roll[i].find('red') == -1:
-
-                                        alternada_encontrado = False
-
-                                    
-
-                                else:
-
-                                    if roll[i].find('black') == -1:
-                                        
-                                        alternada_encontrado = False
-                            else:
-                        
-                                if controll == True:
-
-                                    if roll[i].find('red') == -1:
-
-                                        alternada_encontrado = False
-
-                                    
-
-                                else:
-
-                                    if roll[i].find('black') == -1:
-                                        
-                                        alternada_encontrado = False
-
-
-
-
-                            
-                        tm(0.2)
-                        cursor.execute(f'UPDATE roletas SET talternada=Null WHERE name="{name}"')
-                        conec.commit()
-
-                        if alternada_encontrado == True:
-                            open('tripla_alternada.txt','w',encoding='utf8').write(name)  
-    def bloco_unico(self,giro):
-        tm(4)
-        conec = sqlite3.connect('roletas.db')
-        cursor = conec.cursor()
-        names = self.get_names()
-        
-        
-
-        while True:
-            for name in names:
-
-                ini_controll = 0
-
-                controll = True
-                
-                cursor.execute(f'SELECT bunico FROM roletas WHERE name="{name}"')
-                tm(0.3)
-                roleta = cursor.fetchone()[0]
-                
-                print('Bloco_Unico('+name+')',roleta)
-                if roleta != None:
-
-                    roll = roleta.split(',')
-                    roll.reverse()
-
-                    if len(roll) >=giro -1:
-
-                        for i in range(giro-1):
-                            
-                            number = int(roll[i].split(' ')[0])
-
-                            if i == 0:
-                                if number >= 1 and number <= 12:
-                                    print('bloco 1')
-                                    ini_controll = 0
-
-                                elif number >=13 and number <= 24:
-
-                                    print('bloco 2')
-                                    ini_controll = 1
-
-                                elif number >= 25 and number <= 36:
-
-                                    print('bloco 3')
-                                    ini_controll = 2
-
-                            else:
-
-                                if ini_controll == 0:
-
-                                    if number >= 1 and number <= 12:
-
-                                        
-
-                                        print('bloco 1')
-                                    else:
-
-                                        controll = False
-                                elif ini_controll == 1:
-
-                                    if number >=13 and number <= 24:
-                                        print('bloco 2')
-                                        
-
-                                    else:
-
-                                        controll = False
-                                elif ini_controll ==2:
-                                    if number >= 25 and number <= 36:
-
-                                        
-                                        print('bloco 3')
-
-                                    else:
-
-                                        controll = False
-                                else:
-
-                                    controll = False
-
-                        tm(0.2)
-                        cursor.execute(f'UPDATE roletas SET bunico=Null WHERE name="{name}"')
-                        conec.commit()
-
-                        if controll == True:
-                            open('bloco_unico.txt','w',encoding='utf8').write(name)  
-    def bloco_alternado(self,giro):
-        tm(4)
-        conec = sqlite3.connect('roletas.db')
-        cursor = conec.cursor()
-        names = self.get_names()
-            
-        while True:
-            for name in names:
-
-                ini_controll = 0
-                init_controll = 0
-
-                controll = True
-                
-                cursor.execute(f'SELECT balternada FROM roletas WHERE name="{name}"')
-                tm(0.3)
-                roleta = cursor.fetchone()[0]
-                
-                print('Bloco_Alternada('+name+')',roleta)
-                if roleta != None:
-
-                    roll = roleta.split(',')
-                    roll.reverse()
-
-                    
-                    if len(roll) >=giro -1:
-                        # descobrir qual bloco pertence o primeiro numero
-                        
-                        
-                        if int(roll[0].split(' ')[0]) >= 1 and int(roll[0].split(' ')[0]) <= 12:
-
-                            ini_controll = 0
-
-                        elif int(roll[0].split(' ')[0]) >=13 and int(roll[0].split(' ')[0]) <= 24:
-
-                            ini_controll = 1
-
-                        elif int(roll[0].split(' ')[0]) >= 25 and int(roll[0].split(' ')[0]) <= 36:
-
-                            ini_controll = 2
-                        
-                        
-                        
-                        #descobrir qual bloco pertence o numero 2
-
-                        if int(roll[1].split(' ')[0]) >= 1 and int(roll[1].split(' ')[0]) <= 12:
-
-                            init_controll = 0
-
-                        elif int(roll[1].split(' ')[0]) >=13 and int(roll[1].split(' ')[0]) <= 24:
-
-                            init_controll = 1
-
-                        elif int(roll[1].split(' ')[0]) >= 25 and int(roll[1].split(' ')[0]) <= 36:
-
-                            init_controll = 2
-
-                        ###################
-
-                        for i in range(giro-1):
-                            
-                            if i % 2 == 0:
-
-                                controller = 0
-
-                                if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
-                                    print('bloco 1')
-                                    controller = 0
-
-                                elif int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
-                                    print('bloco 2')
-                                    controller = 1
-
-                                elif int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
-                                    print('bloco 3')
-                                    controller = 2
-
-                                if controller != ini_controll:
-
-                                    controll = False
                                 
-                            if i % 2 != 0:
 
-                                controller = 0
+                            else:
 
-                                if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+                                if roll[i].find('black') == -1:
+                                    
+                                    alternada_encontrado = False
+                        else:
+                    
+                            if controll == True:
+
+                                if roll[i].find('red') == -1:
+
+                                    alternada_encontrado = False
+
+                                
+
+                            else:
+
+                                if roll[i].find('black') == -1:
+                                    
+                                    alternada_encontrado = False
+
+
+
+
+                        
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET talternada=Null WHERE name="{name}"')
+                    conec.commit()
+
+                    if alternada_encontrado == True:
+                        open('tripla_alternada.txt','w',encoding='utf8').write(name)  
+    def bloco_unico(self,giro):
+        
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+        
+        
+
+        
+        for name in names:
+
+            ini_controll = 0
+
+            controll = True
+            
+            cursor.execute(f'SELECT bunico FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            
+            print('Bloco_Unico('+name+')',roleta)
+            if roleta != None:
+
+                roll = roleta.split(',')
+                roll.reverse()
+
+                if len(roll) >=giro -1:
+
+                    for i in range(giro-1):
+                        
+                        number = int(roll[i].split(' ')[0])
+
+                        if i == 0:
+                            if number >= 1 and number <= 12:
+                                print('bloco 1')
+                                ini_controll = 0
+
+                            elif number >=13 and number <= 24:
+
+                                print('bloco 2')
+                                ini_controll = 1
+
+                            elif number >= 25 and number <= 36:
+
+                                print('bloco 3')
+                                ini_controll = 2
+
+                        else:
+
+                            if ini_controll == 0:
+
+                                if number >= 1 and number <= 12:
+
+                                    
+
                                     print('bloco 1')
-                                    controller = 0
-
-                                elif int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
-                                    print('bloco 2')
-                                    controller = 1
-
-                                elif int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
-                                    print('bloco 3')
-                                    controller = 2
-
-                                if controller != init_controll or ini_controll == init_controll:
+                                else:
 
                                     controll = False
-                        tm(0.2)
-                        cursor.execute(f'UPDATE roletas SET balternada=Null WHERE name="{name}"')
-                        conec.commit()
+                            elif ini_controll == 1:
 
-                        if controll == True:
-                            open('bloco_alternada.txt','w',encoding='utf8').write(name) 
-    def bloco_duplo(self,giro):
-        tm(4)
+                                if number >=13 and number <= 24:
+                                    print('bloco 2')
+                                    
+
+                                else:
+
+                                    controll = False
+                            elif ini_controll ==2:
+                                if number >= 25 and number <= 36:
+
+                                    
+                                    print('bloco 3')
+
+                                else:
+
+                                    controll = False
+                            else:
+
+                                controll = False
+
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET bunico=Null WHERE name="{name}"')
+                    conec.commit()
+
+                    if controll == True:
+                        open('bloco_unico.txt','w',encoding='utf8').write(name)  
+    def bloco_alternado(self,giro):
+        
         conec = sqlite3.connect('roletas.db')
         cursor = conec.cursor()
         names = self.get_names()
             
-        while True:
-            for name in names:
+        for name in names:
 
-                ini_controll = 0
-                init_controll = 0
-                check_bloco_actual = False
-                controll = True
+            ini_controll = 0
+            init_controll = 0
+
+            controll = True
+            
+            cursor.execute(f'SELECT balternada FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            
+            print('Bloco_Alternada('+name+')',roleta)
+            if roleta != None:
+
+                roll = roleta.split(',')
+                roll.reverse()
+
                 
-                cursor.execute(f'SELECT bduplo FROM roletas WHERE name="{name}"')
-                tm(0.3)
-                roleta = cursor.fetchone()[0]
-                
-                print('Bloco_Duplo('+name+')',roleta)
-                if roleta != None:
-
-                    roll = roleta.split(',')
-                    roll.reverse()
-
+                if len(roll) >=giro -1:
+                    # descobrir qual bloco pertence o primeiro numero
                     
-                    if len(roll) >=giro -1:
-                        # descobrir qual bloco pertence o primeiro numero
+                    
+                    if int(roll[0].split(' ')[0]) >= 1 and int(roll[0].split(' ')[0]) <= 12:
+
+                        ini_controll = 0
+
+                    elif int(roll[0].split(' ')[0]) >=13 and int(roll[0].split(' ')[0]) <= 24:
+
+                        ini_controll = 1
+
+                    elif int(roll[0].split(' ')[0]) >= 25 and int(roll[0].split(' ')[0]) <= 36:
+
+                        ini_controll = 2
+                    
+                    
+                    
+                    #descobrir qual bloco pertence o numero 2
+
+                    if int(roll[1].split(' ')[0]) >= 1 and int(roll[1].split(' ')[0]) <= 12:
+
+                        init_controll = 0
+
+                    elif int(roll[1].split(' ')[0]) >=13 and int(roll[1].split(' ')[0]) <= 24:
+
+                        init_controll = 1
+
+                    elif int(roll[1].split(' ')[0]) >= 25 and int(roll[1].split(' ')[0]) <= 36:
+
+                        init_controll = 2
+
+                    ###################
+
+                    for i in range(giro-1):
                         
-                        
-                        if int(roll[0].split(' ')[0]) >= 1 and int(roll[0].split(' ')[0]) <= 12:
-
-                            ini_controll = 0
-
-                        elif int(roll[0].split(' ')[0]) >=13 and int(roll[0].split(' ')[0]) <= 24:
-
-                            ini_controll = 1
-
-                        elif int(roll[0].split(' ')[0]) >= 25 and int(roll[0].split(' ')[0]) <= 36:
-
-                            ini_controll = 2
-                        
-                        
-                        
-                        #descobrir qual bloco pertence o numero 2
-
-                        if int(roll[2].split(' ')[0]) >= 1 and int(roll[2].split(' ')[0]) <= 12:
-
-                            init_controll = 0
-
-                        elif int(roll[2].split(' ')[0]) >=13 and int(roll[2].split(' ')[0]) <= 24:
-
-                            init_controll = 1
-
-                        elif int(roll[2].split(' ')[0]) >= 25 and int(roll[2].split(' ')[0]) <= 36:
-
-                            init_controll = 2
-
-                        ###################
-
-                        for i in range(giro-1):
+                        if i % 2 == 0:
 
                             controller = 0
 
-                            if check_bloco_actual == False:
+                            if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+                                print('bloco 1')
+                                controller = 0
 
-                                if ini_controll == 0:
-                                    
-                                    controller = 0
+                            elif int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+                                print('bloco 2')
+                                controller = 1
 
-                                    if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+                            elif int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+                                print('bloco 3')
+                                controller = 2
 
-                                        print('bloco 1')
-                                        
+                            if controller != ini_controll:
 
-                                    else:
+                                controll = False
+                            
+                        if i % 2 != 0:
 
-                                        controll = False
-                                    
-                                elif ini_controll == 1:
+                            controller = 0
 
-                                    controller = 1
+                            if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+                                print('bloco 1')
+                                controller = 0
 
-                                    if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+                            elif int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+                                print('bloco 2')
+                                controller = 1
 
-                                        print('bloco 2')
-                                    
-                                    else:
+                            elif int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+                                print('bloco 3')
+                                controller = 2
 
-                                        controll = False
+                            if controller != init_controll or ini_controll == init_controll:
 
-                                elif ini_controll == 2:
+                                controll = False
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET balternada=Null WHERE name="{name}"')
+                    conec.commit()
 
-                                    controller = 2
+                    if controll == True:
+                        open('bloco_alternada.txt','w',encoding='utf8').write(name) 
+    def bloco_duplo(self,giro):
+        
+        conec = sqlite3.connect('roletas.db')
+        cursor = conec.cursor()
+        names = self.get_names()
+            
+        
+        for name in names:
 
-                                    if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+            ini_controll = 0
+            init_controll = 0
+            check_bloco_actual = False
+            controll = True
+            
+            cursor.execute(f'SELECT bduplo FROM roletas WHERE name="{name}"')
+            tm(0.1)
+            roleta = cursor.fetchone()[0]
+            
+            print('Bloco_Duplo('+name+')',roleta)
+            if roleta != None:
 
-                                        print('bloco 3')
+                roll = roleta.split(',')
+                roll.reverse()
 
-                                    else:
+                
+                if len(roll) >=giro -1:
+                    # descobrir qual bloco pertence o primeiro numero
+                    
+                    
+                    if int(roll[0].split(' ')[0]) >= 1 and int(roll[0].split(' ')[0]) <= 12:
 
-                                        controll = False
+                        ini_controll = 0
 
-                                if i % 2 != 0:
+                    elif int(roll[0].split(' ')[0]) >=13 and int(roll[0].split(' ')[0]) <= 24:
 
-                                    check_bloco_actual = True
+                        ini_controll = 1
+
+                    elif int(roll[0].split(' ')[0]) >= 25 and int(roll[0].split(' ')[0]) <= 36:
+
+                        ini_controll = 2
+                    
+                    
+                    
+                    #descobrir qual bloco pertence o numero 2
+
+                    if int(roll[2].split(' ')[0]) >= 1 and int(roll[2].split(' ')[0]) <= 12:
+
+                        init_controll = 0
+
+                    elif int(roll[2].split(' ')[0]) >=13 and int(roll[2].split(' ')[0]) <= 24:
+
+                        init_controll = 1
+
+                    elif int(roll[2].split(' ')[0]) >= 25 and int(roll[2].split(' ')[0]) <= 36:
+
+                        init_controll = 2
+
+                    ###################
+
+                    for i in range(giro-1):
+
+                        controller = 0
+
+                        if check_bloco_actual == False:
+
+                            if ini_controll == 0:
                                 
-                                if controller != ini_controll:
+                                controller = 0
+
+                                if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+
+                                    print('bloco 1')
+                                    
+
+                                else:
 
                                     controll = False
-                            
-                            if check_bloco_actual == True:
-
-                                if init_controll == 0:
-                                    
-                                    controller = 0
-
-                                    if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
-
-                                        print('bloco 1')
-                                        
-
-                                    else:
-
-                                        controll = False
-                                    
-                                elif init_controll == 1:
-
-                                    controller = 1
-
-                                    if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
-
-                                        print('bloco 2')
-                                    
-                                    else:
-
-                                        controll = False
-
-                                elif init_controll == 2:
-
-                                    controller = 2
-
-                                    if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
-
-                                        print('bloco 3')
-
-                                    else:
-
-                                        controll = False
-
-                                if i % 2 != 0:
-
-                                    check_bloco_actual = False
                                 
-                                if controller != ini_controll or ini_controll == init_controll:
+                            elif ini_controll == 1:
+
+                                controller = 1
+
+                                if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+
+                                    print('bloco 2')
+                                
+                                else:
 
                                     controll = False
-                        tm(0.2)
-                        cursor.execute(f'UPDATE roletas SET bduplo=Null WHERE name="{name}"')
-                        conec.commit()
 
-                        if controll == True:
-                            open('bloco_duplo.txt','w',encoding='utf8').write(name) 
+                            elif ini_controll == 2:
 
+                                controller = 2
 
+                                if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
 
+                                    print('bloco 3')
 
+                                else:
 
+                                    controll = False
 
+                            if i % 2 != 0:
 
-
+                                check_bloco_actual = True
                             
+                            if controller != ini_controll:
+
+                                controll = False
+                        
+                        if check_bloco_actual == True:
+
+                            if init_controll == 0:
+                                
+                                controller = 0
+
+                                if int(roll[i].split(' ')[0]) >= 1 and int(roll[i].split(' ')[0]) <= 12:
+
+                                    print('bloco 1')
+                                    
+
+                                else:
+
+                                    controll = False
+                                
+                            elif init_controll == 1:
+
+                                controller = 1
+
+                                if int(roll[i].split(' ')[0]) >=13 and int(roll[i].split(' ')[0]) <= 24:
+
+                                    print('bloco 2')
+                                
+                                else:
+
+                                    controll = False
+
+                            elif init_controll == 2:
+
+                                controller = 2
+
+                                if int(roll[i].split(' ')[0]) >= 25 and int(roll[i].split(' ')[0]) <= 36:
+
+                                    print('bloco 3')
+
+                                else:
+
+                                    controll = False
+
+                            if i % 2 != 0:
+
+                                check_bloco_actual = False
                             
-                            
+                            if controller != ini_controll or ini_controll == init_controll:
 
+                                controll = False
+                    tm(0.1)
+                    cursor.execute(f'UPDATE roletas SET bduplo=Null WHERE name="{name}"')
+                    conec.commit()
 
-
-
-
-
-
-
-
-
-
-
-
-
+                    if controll == True:
+                        open('bloco_duplo.txt','w',encoding='utf8').write(name) 
     def init(self):
 
         self.entry_roletes()
         _thread.start_new_thread(self.check_updates_in_roletes,())
-        #_thread.start_new_thread(self.alternada,(4,))
-        #_thread.start_new_thread(self.duplo_alternada,(5,))
-        #_thread.start_new_thread(self.tripla_alternada,(4,))
-        #_thread.start_new_thread(self.bloco_alternado,(3,))
-        _thread.start_new_thread(self.bloco_duplo,(5,))
+
 
 
         while True:
-            tm(100)
-            print()
+            self.alternada(4)
+            self.duplo_alternada(5)
+            self.tripla_alternada(4)
+            self.bloco_unico(4)
+            self.bloco_alternado(4)
+            self.bloco_duplo(5)
+            
     
 
         
@@ -851,6 +822,3 @@ class Roll():
 
 
 
-
-tete = Roll('luizrgfg',True)
-tete.init()

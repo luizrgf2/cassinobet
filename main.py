@@ -10,7 +10,7 @@ from pegar_roletas import Roll
 import _thread
 import platform
 from flask import Flask,request
-
+from playsound import playsound
 
 
 app = Flask('app')
@@ -97,56 +97,116 @@ def init():
     user = json_file['user']
     password = json_file['password']
 
+    open('alternada.txt','w').truncate(0)
+    open('dupla_alternada.txt','w').truncate(0)
+    open('tripla_alternada.txt','w').truncate(0)
+    open('bloco_unico.txt','w').truncate(0)
+    open('bloco_alternada.txt','w').truncate(0)
+    open('bloco_duplo.txt','w').truncate(0)
+
     try:
         driver = webdriver_complete(visible)
-        login = Login(visible,user,password,driver)
+        login = Login(visible,user,password)
         login.login()
-        path = os.getcwd()+barra()+'roletas'+barra()
         
-        roll = Roll(user,visible,driver)
-        roll.entry_roletes()
+        roll = Roll(user,visible)
+        roll.init()
         
         
-        roll.get_roulete(path)
+        
         return 'Iniciado com sucesso'
     except Exception as e:
         return e
-@app.route('/pegarinfo',methods=['POST'])
+@app.route('/pegarinfo',methods=['GET'])
 def pegar_infos():
 
-    path = os.getcwd()+barra()+'roletas'+barra()
-
-    lista = os.listdir(path)
-
-    files = {
-
-        'items':[
-            
-        ]
-
-    }
+    alternada_reader = ''
+    dupla_alternada_reader = ''
+    tripla_alternada_reader = ''
+    bunico_reader = ''
+    balternada_reaader = ''
+    bduplo_reader = ''
 
 
-    for nome in lista:
 
-        file_reader = open(path+nome,'r').read().split('\n')
+
+
+    try:
+        alternada_reader = open('alternada.txt','r').read()
+    except:
+        print('alternada.txt não encontrada!')
+    
+    try:
+        dupla_alternada_reader = open('dupla_alternada.txt','r').read()
+    except:
+        print('dupla_alternada.txt não encontrada!')
+    
+    
+    try:
+        tripla_alternada_reader = open('tripla_alternada.txt','r').read()
+    except:
+        print('tripla_alternada.txt não encontrada!')
+
+    try:
+        bunico_reader = open('bloco_unico.txt','r').read()
+    except:
+        print('bloco_unico.txt não encontrada!')
+
+    try:
+        balternada_reaader = open('bloco_alternada.txt','r').read()
+    except:
+        print('bloco_alternada.txt não encontrada!')
+
+    try:
+        bduplo_reader = open('bloco_duplo.txt','r').read()
+    except:
+        print('bloco_duplo.txt não encontrada!')
+
+    if len(alternada_reader) != 0:
+
+        print(alternada_reader,'Altenada encontaada')
+        open('alternada.txt','w').truncate(0)
+        playsound('alert.mp3')
+        tm(6)
+        return alternada_reader + ' Altenada encontaada'
+    if len(dupla_alternada_reader) != 0:
+
+            print(dupla_alternada_reader,'dupla_alternada encontrado')
+            open('dupla_alternada.txt','w').truncate(0)
+            playsound('alert.mp3')
+            tm(6)
+            return dupla_alternada_reader+' dupla_alternada encontrado'
+    if len(tripla_alternada_reader) != 0:
+
+         
+            print(tripla_alternada_reader,'tripla_alternada encontrado')
+            open('tripla_alternada.txt','w').truncate(0)
+            playsound('alert.mp3')
+            tm(6)
+            return tripla_alternada_reader+' tripla_alternada encontrado'
+    if len(bunico_reader) != 0:
+
+            print(bunico_reader,'bloco unico encontrado')
+            open('loco_unico.txt','w').truncate(0)
+            playsound('alert.mp3')
+            tm(6)
+            return bunico_reader+' bloco unico encontrado'
+    if len(balternada_reaader) != 0:
+
+            print(balternada_reaader,'bloco alternada encontrado')
+            open('bloco_alternada.txt','w').truncate(0)
+            playsound('alert.mp3')
+            tm(6)
+            return balternada_reaader+' bloco alternada encontrado'
+    if len(bduplo_reader) != 0:
+
+            print(bduplo_reader,'bloco duplo encontrado')
+            open('bloco_alternada.txt','w').truncate(0)
+            playsound('alert.mp3')
+            tm(6)
+            return bduplo_reader+' bloco duplo encontrado'
         
-        item= [{
-            'nome':nome[0,len(nome)-4],
-            'roleta':file_reader
-        }]
-
-        files['items'].append(item)
-    for nome in lista:
-
-        os.remove(path+nome)
-    
-    
-    if len(files['items']) !=0:
-        return files
-    else:
-        return 'Nada para ser analisado'
-                
+    return None
 
         
 app.run()

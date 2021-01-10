@@ -1,0 +1,527 @@
+{
+    "bet365 Premium Roulette": [
+        {
+            "alternada": "2 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "17 black,19 red,26 black,35 black,24 black,19 red,17 black,3 red,5 red,8 black,2 black"
+        },
+        {
+            "talternada": "17 black,19 red,26 black,35 black,24 black,19 red,17 black,3 red,5 red,8 black,2 black"
+        },
+        {
+            "bunico": "17 black,19 red,26 black,35 black,24 black,19 red,17 black,3 red,5 red,8 black,2 black"
+        },
+        {
+            "balternada": "17 black,19 red,26 black,35 black,24 black,19 red,17 black,3 red,5 red,8 black,2 black"
+        },
+        {
+            "bduplo": "17 black,19 red,26 black,35 black,24 black,19 red,17 black,3 red,5 red,8 black,2 black"
+        }
+    ],
+    "bet365 Roulette": [
+        {
+            "alternada": "14 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "15 black,26 black,24 black,18 red,22 black,36 red,31 black,36 red,9 red,13 black,14 red"
+        },
+        {
+            "talternada": "15 black,26 black,24 black,18 red,22 black,36 red,31 black,36 red,9 red,13 black,14 red"
+        },
+        {
+            "bunico": "15 black,26 black,24 black,18 red,22 black,36 red,31 black,36 red,9 red,13 black,14 red"
+        },
+        {
+            "balternada": "15 black,26 black,24 black,18 red,22 black,36 red,31 black,36 red,9 red,13 black,14 red"
+        },
+        {
+            "bduplo": "15 black,26 black,24 black,18 red,22 black,36 red,31 black,36 red,9 red,13 black,14 red"
+        }
+    ],
+    "Quantum Roulette Live": [
+        {
+            "alternada": "32 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,27 red,10 black,2 black,21 red,14 red,32 red"
+        },
+        {
+            "talternada": "29 black,27 red,10 black,2 black,21 red,14 red,32 red"
+        },
+        {
+            "bunico": "29 black,27 red,10 black,2 black,21 red,14 red,32 red"
+        },
+        {
+            "balternada": "29 black,27 red,10 black,2 black,21 red,14 red,32 red"
+        },
+        {
+            "bduplo": "29 black,27 red,10 black,2 black,21 red,14 red,32 red"
+        }
+    ],
+    "Quantum Roulette Italiana": [
+        {
+            "alternada": "0 green",
+            "talternada": null
+        },
+        {
+            "dalternada": "35 black,5 red,13 black,1 red,15 black,3 red,0 green"
+        },
+        {
+            "talternada": "35 black,5 red,13 black,1 red,15 black,3 red,0 green"
+        },
+        {
+            "bunico": "35 black,5 red,13 black,1 red,15 black,3 red,0 green"
+        },
+        {
+            "balternada": "35 black,5 red,13 black,1 red,15 black,3 red,0 green"
+        },
+        {
+            "bduplo": "35 black,5 red,13 black,1 red,15 black,3 red,0 green"
+        }
+    ],
+    "Roulette": [
+        {
+            "alternada": "25 red,10 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "talternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "bunico": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "balternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "bduplo": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        }
+    ],
+    "Age Of The Gods Bonus Roulette": [
+        {
+            "alternada": "14 red,16 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "24 black,33 black,21 red,17 black,5 red,8 black,14 red,16 red"
+        },
+        {
+            "talternada": "24 black,33 black,21 red,17 black,5 red,8 black,14 red,16 red"
+        },
+        {
+            "bunico": "24 black,33 black,21 red,17 black,5 red,8 black,14 red,16 red"
+        },
+        {
+            "balternada": "24 black,33 black,21 red,17 black,5 red,8 black,14 red,16 red"
+        },
+        {
+            "bduplo": "24 black,33 black,21 red,17 black,5 red,8 black,14 red,16 red"
+        }
+    ],
+    "Football Roulette": [
+        {
+            "alternada": "10 black,25 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "talternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "bunico": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "balternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "bduplo": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        }
+    ],
+    "Hindi Roulette": [
+        {
+            "alternada": "27 red,31 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "14 red,10 black,32 red,33 black,29 black,27 red,10 black,24 black,27 red,31 black"
+        },
+        {
+            "talternada": "14 red,10 black,32 red,33 black,29 black,27 red,10 black,24 black,27 red,31 black"
+        },
+        {
+            "bunico": "14 red,10 black,32 red,33 black,29 black,27 red,10 black,24 black,27 red,31 black"
+        },
+        {
+            "balternada": "14 red,10 black,32 red,33 black,29 black,27 red,10 black,24 black,27 red,31 black"
+        },
+        {
+            "bduplo": "14 red,10 black,32 red,33 black,29 black,27 red,10 black,24 black,27 red,31 black"
+        }
+    ],
+    "Speed Roulette": [
+        {
+            "alternada": "34 red,23 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,2 black,11 black,4 black,8 black,14 red,13 black,24 black,2 black,9 red,18 red,8 black,34 red,23 red"
+        },
+        {
+            "talternada": "29 black,2 black,11 black,4 black,8 black,14 red,13 black,24 black,2 black,9 red,18 red,8 black,34 red,23 red"
+        },
+        {
+            "bunico": "29 black,2 black,11 black,4 black,8 black,14 red,13 black,24 black,2 black,9 red,18 red,8 black,34 red,23 red"
+        },
+        {
+            "balternada": "29 black,2 black,11 black,4 black,8 black,14 red,13 black,24 black,2 black,9 red,18 red,8 black,34 red,23 red"
+        },
+        {
+            "bduplo": "29 black,2 black,11 black,4 black,8 black,14 red,13 black,24 black,2 black,9 red,18 red,8 black,34 red,23 red"
+        }
+    ],
+    "Greek  Roulette": [
+        {
+            "alternada": "14 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "6 black,20 black,1 red,13 black,19 red,34 red,10 black,15 black,14 red"
+        },
+        {
+            "talternada": "6 black,20 black,1 red,13 black,19 red,34 red,10 black,15 black,14 red"
+        },
+        {
+            "bunico": "6 black,20 black,1 red,13 black,19 red,34 red,10 black,15 black,14 red"
+        },
+        {
+            "balternada": "6 black,20 black,1 red,13 black,19 red,34 red,10 black,15 black,14 red"
+        },
+        {
+            "bduplo": "6 black,20 black,1 red,13 black,19 red,34 red,10 black,15 black,14 red"
+        }
+    ],
+    "Turkish Roulette": [
+        {
+            "alternada": "5 red,13 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "14 red,11 black,14 red,7 red,31 black,6 black,5 red,13 black"
+        },
+        {
+            "talternada": "14 red,11 black,14 red,7 red,31 black,6 black,5 red,13 black"
+        },
+        {
+            "bunico": "14 red,11 black,14 red,7 red,31 black,6 black,5 red,13 black"
+        },
+        {
+            "balternada": "14 red,11 black,14 red,7 red,31 black,6 black,5 red,13 black"
+        },
+        {
+            "bduplo": "14 red,11 black,14 red,7 red,31 black,6 black,5 red,13 black"
+        }
+    ],
+    "Roleta Brasileira": [
+        {
+            "alternada": "34 red,10 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "36 red,19 red,6 black,18 red,31 black,3 red,1 red,20 black,34 red,10 black"
+        },
+        {
+            "talternada": "36 red,19 red,6 black,18 red,31 black,3 red,1 red,20 black,34 red,10 black"
+        },
+        {
+            "bunico": "36 red,19 red,6 black,18 red,31 black,3 red,1 red,20 black,34 red,10 black"
+        },
+        {
+            "balternada": "36 red,19 red,6 black,18 red,31 black,3 red,1 red,20 black,34 red,10 black"
+        },
+        {
+            "bduplo": "36 red,19 red,6 black,18 red,31 black,3 red,1 red,20 black,34 red,10 black"
+        }
+    ],
+    "Quantum Auto Roulette": [
+        {
+            "alternada": "4 black,20 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "12 red,25 red,2 black,23 red,21 red,10 black,4 black,20 black"
+        },
+        {
+            "talternada": "12 red,25 red,2 black,23 red,21 red,10 black,4 black,20 black"
+        },
+        {
+            "bunico": "12 red,25 red,2 black,23 red,21 red,10 black,4 black,20 black"
+        },
+        {
+            "balternada": "12 red,25 red,2 black,23 red,21 red,10 black,4 black,20 black"
+        },
+        {
+            "bduplo": "12 red,25 red,2 black,23 red,21 red,10 black,4 black,20 black"
+        }
+    ],
+    "Prestige Roulette": [
+        {
+            "alternada": "2 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "16 red,36 red,34 red,16 red,8 black,28 black,4 black,6 black,2 black"
+        },
+        {
+            "talternada": "16 red,36 red,34 red,16 red,8 black,28 black,4 black,6 black,2 black"
+        },
+        {
+            "bunico": "16 red,36 red,34 red,16 red,8 black,28 black,4 black,6 black,2 black"
+        },
+        {
+            "balternada": "16 red,36 red,34 red,16 red,8 black,28 black,4 black,6 black,2 black"
+        },
+        {
+            "bduplo": "16 red,36 red,34 red,16 red,8 black,28 black,4 black,6 black,2 black"
+        }
+    ],
+    "American Roulette": [
+        {
+            "alternada": "19 red,4 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "28 black,23 red,32 red,35 black,19 red,35 black,5 red,11 black,19 red,4 black"
+        },
+        {
+            "talternada": "28 black,23 red,32 red,35 black,19 red,35 black,5 red,11 black,19 red,4 black"
+        },
+        {
+            "bunico": "28 black,23 red,32 red,35 black,19 red,35 black,5 red,11 black,19 red,4 black"
+        },
+        {
+            "balternada": "28 black,23 red,32 red,35 black,19 red,35 black,5 red,11 black,19 red,4 black"
+        },
+        {
+            "bduplo": "28 black,23 red,32 red,35 black,19 red,35 black,5 red,11 black,19 red,4 black"
+        }
+    ],
+    "Spread Bet Roulette": [
+        {
+            "alternada": "13 black,31 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "22 black,5 red,25 red,27 red,5 red,11 black,13 black,31 black"
+        },
+        {
+            "talternada": "22 black,5 red,25 red,27 red,5 red,11 black,13 black,31 black"
+        },
+        {
+            "bunico": "22 black,5 red,25 red,27 red,5 red,11 black,13 black,31 black"
+        },
+        {
+            "balternada": "22 black,5 red,25 red,27 red,5 red,11 black,13 black,31 black"
+        },
+        {
+            "bduplo": "22 black,5 red,25 red,27 red,5 red,11 black,13 black,31 black"
+        }
+    ],
+    "Deutsches Roulette": [
+        {
+            "alternada": "0 green,17 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "5 red,27 red,34 red,28 black,17 black,15 black,24 black,20 black,25 red,17 black,0 green,17 black"
+        },
+        {
+            "talternada": "5 red,27 red,34 red,28 black,17 black,15 black,24 black,20 black,25 red,17 black,0 green,17 black"
+        },
+        {
+            "bunico": "5 red,27 red,34 red,28 black,17 black,15 black,24 black,20 black,25 red,17 black,0 green,17 black"
+        },
+        {
+            "balternada": "5 red,27 red,34 red,28 black,17 black,15 black,24 black,20 black,25 red,17 black,0 green,17 black"
+        },
+        {
+            "bduplo": "5 red,27 red,34 red,28 black,17 black,15 black,24 black,20 black,25 red,17 black,0 green,17 black"
+        }
+    ],
+    "Slingshot": [
+        {
+            "alternada": "18 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "20 black,6 black,27 red,16 red,33 black,20 black,18 red"
+        },
+        {
+            "talternada": "20 black,6 black,27 red,16 red,33 black,20 black,18 red"
+        },
+        {
+            "bunico": "20 black,6 black,27 red,16 red,33 black,20 black,18 red"
+        },
+        {
+            "balternada": "20 black,6 black,27 red,16 red,33 black,20 black,18 red"
+        },
+        {
+            "bduplo": "20 black,6 black,27 red,16 red,33 black,20 black,18 red"
+        }
+    ],
+    "UK Roulette": [
+        {
+            "alternada": "5 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "25 red,24 black,18 red,30 red,15 black,14 red,8 black,18 red,11 black,34 red,5 red"
+        },
+        {
+            "talternada": "25 red,24 black,18 red,30 red,15 black,14 red,8 black,18 red,11 black,34 red,5 red"
+        },
+        {
+            "bunico": "25 red,24 black,18 red,30 red,15 black,14 red,8 black,18 red,11 black,34 red,5 red"
+        },
+        {
+            "balternada": "25 red,24 black,18 red,30 red,15 black,14 red,8 black,18 red,11 black,34 red,5 red"
+        },
+        {
+            "bduplo": "25 red,24 black,18 red,30 red,15 black,14 red,8 black,18 red,11 black,34 red,5 red"
+        }
+    ],
+    "Prime Slingshot": [
+        {
+            "alternada": "3 red,30 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "5 red,0 green,14 red,5 red,27 red,19 red,3 red,30 red"
+        },
+        {
+            "talternada": "5 red,0 green,14 red,5 red,27 red,19 red,3 red,30 red"
+        },
+        {
+            "bunico": "5 red,0 green,14 red,5 red,27 red,19 red,3 red,30 red"
+        },
+        {
+            "balternada": "5 red,0 green,14 red,5 red,27 red,19 red,3 red,30 red"
+        },
+        {
+            "bduplo": "5 red,0 green,14 red,5 red,27 red,19 red,3 red,30 red"
+        }
+    ],
+    "French Roulette": [
+        {
+            "alternada": "25 red,10 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "talternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "bunico": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "balternada": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        },
+        {
+            "bduplo": "29 black,1 red,22 black,17 black,35 black,32 red,11 black,4 black,25 red,10 black"
+        }
+    ],
+    "Triumph Roulette": [
+        {
+            "alternada": "15 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "talternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "bunico": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "balternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "bduplo": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        }
+    ],
+    "Triumph French Roulette": [
+        {
+            "alternada": "15 black",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "talternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "bunico": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "balternada": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        },
+        {
+            "bduplo": "29 black,16 red,27 red,29 black,30 red,3 red,31 black,0 green,15 black"
+        }
+    ],
+    "Roulette Italiana": [
+        {
+            "alternada": "21 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "18 red,1 red,23 red,2 black,3 red,8 black,24 black,22 black,21 red"
+        },
+        {
+            "talternada": "18 red,1 red,23 red,2 black,3 red,8 black,24 black,22 black,21 red"
+        },
+        {
+            "bunico": "18 red,1 red,23 red,2 black,3 red,8 black,24 black,22 black,21 red"
+        },
+        {
+            "balternada": "18 red,1 red,23 red,2 black,3 red,8 black,24 black,22 black,21 red"
+        },
+        {
+            "bduplo": "18 red,1 red,23 red,2 black,3 red,8 black,24 black,22 black,21 red"
+        }
+    ],
+    "Football French Roulette": [
+        {
+            "alternada": "10 black,25 red",
+            "talternada": null
+        },
+        {
+            "dalternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "talternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "bunico": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "balternada": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        },
+        {
+            "bduplo": "29 black,22 black,24 black,10 black,6 black,4 black,10 black,25 red"
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+2021-01-09 12:57:58.955050 Alternada(bet365 Premium Roulette) ['29 black', '5 red', '31 black']
+2021-01-09 12:58:06.824657 Dupla_Alternada(Roulette) ['31 black', '17 black', '32 red', '21 red']
+2021-01-09 12:58:06.867658 Dupla_Alternada(French Roulette) ['31 black', '17 black', '32 red', '21 red']
+2021-01-09 12:58:18.521825 Alternada(bet365 Roulette) ['24 black', '32 red', '2 black']
+2021-01-09 12:59:10.376619 Alternada(Roleta Brasileira) ['2 black', '36 red', '22 black']
+2021-01-09 12:59:33.128733 Alternada(bet365 Roulette) ['4 black', '7 red', '24 black']

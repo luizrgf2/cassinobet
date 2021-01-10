@@ -86,6 +86,5 @@ class Login():
         self.driver.close()
 
         
-                
-        
-        
+login = Login(True,'luizrgfg','Mano010599')
+login.login()

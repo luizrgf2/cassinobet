@@ -44,58 +44,30 @@ def webdriver_complete(visible:bool):
         
     driver = webdriver.Chrome(executable_path=path,chrome_options=options)
     return driver  
-def get_roulete(name_roulete:str,driver:webdriver,path:str):
-        
-    num_roletes = len(driver.find_elements_by_class_name('lobby-tables__item'))
-    names_roletes = driver.find_elements_by_class_name('lobby-table__name-container')
-    numbers_of_roulete = driver.find_elements_by_class_name('lobby-table-rol-round-result__container')
-        
-    open('teste.txt','w').write(str(driver.page_source))
-    roulete = []
-    digits = []
-    for i in range(num_roletes):
-        if names_roletes[i].text == name_roulete:
-            name = names_roletes[i].text
-            color = ''
-            number = 0
-            numeros = numbers_of_roulete[i].find_elements_by_class_name('lobby-table-rol-round-result__item-number')
-                            
-            for numero in numeros:
-                number = int(numero.text)
-                color = numero.find_element_by_xpath('./..').get_attribute('class')
-                print
-                if color.find('red') != -1:
-                    color = 'red'
-                elif color.find('black') != -1:
-                    color='black'
-                else:
-                    color = 'green'
-                print(name,color,number)
-                file_reader = ''
-                try:
-                    file_reader = open(path+name+'.txt','r').read()
-                except:
-                    
-                    print()
-                    
-                if len(file_reader) == 0:
-                    file_reader = str(number)+','+color
-                else:
-                    file_reader = file_reader+'\n'+str(number)+','+color
-                    
-                open(path+name+'.txt','w').write(file_reader)           
-
-
-        
-                #digits.append({'name':name_rolete[i],'color':color,'number':base.find_element_by_class_name('lobby-table-rol-round-result__item-number')})
 @app.route('/iniciar',methods=['POST'])
 def init():
     
     json_file = request.get_json()
-    
-    visible = json_file['visible']
-    user = json_file['user']
-    password = json_file['password']
+    print(json_file)
+    file = json.loads(json_file)
+    print(file)
+    user = file['user']
+    visible = file['visible']
+    giro_alternada = file['alternada']
+    giro_dupla_alternada = file['dupla_alternada']
+    giro_tripla_alternada = file['tripla_alternada']
+    giro_bloco_unico = file['bloco_unico']
+    giro_bloco_duplo = file['bloco_duplo']
+    giro_bloco_alternada = file['bloco_alternada']
+    auth_alternada = file['auth_alternada']
+    auth_dalternada = file['auth_dalternada']
+    auth_talternada = file['auth_talternada']
+    auth_bunico = file['auth_bunico']
+    auth_balternada = file['auth_balternada']
+    auth_bduplo = file['auth_bduplo']
+    sound = file['sound']
+
+
 
     open('alternada.txt','w').truncate(0)
     open('dupla_alternada.txt','w').truncate(0)
@@ -104,110 +76,80 @@ def init():
     open('bloco_alternada.txt','w').truncate(0)
     open('bloco_duplo.txt','w').truncate(0)
 
+    
     try:
-        driver = webdriver_complete(visible)
-        login = Login(visible,user,password)
-        login.login()
+
         
         roll = Roll(user,visible)
-        roll.init()
         
+        _thread.start_new_thread(roll.init,(giro_alternada,giro_dupla_alternada,giro_tripla_alternada,giro_bloco_unico,giro_bloco_alternada,giro_bloco_duplo,auth_alternada,auth_dalternada,auth_talternada,auth_bunico,auth_balternada,auth_bduplo))
         
         
         return 'Iniciado com sucesso'
     except Exception as e:
         return e
-@app.route('/pegarinfo',methods=['GET'])
+def init_sound(sound:bool,text:str,name_file:str):
+
+    if len(text) > 2:
+        if sound == True:
+            playsound('alert.mp3')
+        open(name_file+'.txt','w').write('')
+        file_reader = open('aux_padrao.txt','r').read().split('\n')
+        if len(file_reader) >8:
+             open('aux_padrao.txt','w').write('')
+        return text 
+@app.route('/pegarinfo',methods=['POST'])
 def pegar_infos():
-
-    alternada_reader = ''
-    dupla_alternada_reader = ''
-    tripla_alternada_reader = ''
-    bunico_reader = ''
-    balternada_reaader = ''
-    bduplo_reader = ''
-
-
-
-
-
-    try:
-        alternada_reader = open('alternada.txt','r').read()
-    except:
-        print('alternada.txt não encontrada!')
     
-    try:
-        dupla_alternada_reader = open('dupla_alternada.txt','r').read()
-    except:
-        print('dupla_alternada.txt não encontrada!')
+    padrao = ''
+
+    
+    names_files = ['alternada','dupla_alternada','tripla_alternada','bloco_unico','bloco_alternada','bloco_duplo']
     
     
+    json_file = json.loads(request.get_json())
+    
+    print(json_file)
     try:
-        tripla_alternada_reader = open('tripla_alternada.txt','r').read()
-    except:
-        print('tripla_alternada.txt não encontrada!')
+        padrao = open('padrao.txt','r',encoding='utf8').read()
+    except Exception as e:
+        print(e)
+   
 
-    try:
-        bunico_reader = open('bloco_unico.txt','r').read()
-    except:
-        print('bloco_unico.txt não encontrada!')
 
-    try:
-        balternada_reaader = open('bloco_alternada.txt','r').read()
-    except:
-        print('bloco_alternada.txt não encontrada!')
-
-    try:
-        bduplo_reader = open('bloco_duplo.txt','r').read()
-    except:
-        print('bloco_duplo.txt não encontrada!')
-
-    if len(alternada_reader) != 0:
-
-        print(alternada_reader,'Altenada encontaada')
-        open('alternada.txt','w').truncate(0)
-        playsound('alert.mp3')
-        tm(6)
-        return alternada_reader + ' Altenada encontaada'
-    if len(dupla_alternada_reader) != 0:
-
-            print(dupla_alternada_reader,'dupla_alternada encontrado')
-            open('dupla_alternada.txt','w').truncate(0)
-            playsound('alert.mp3')
-            tm(6)
-            return dupla_alternada_reader+' dupla_alternada encontrado'
-    if len(tripla_alternada_reader) != 0:
-
-         
-            print(tripla_alternada_reader,'tripla_alternada encontrado')
-            open('tripla_alternada.txt','w').truncate(0)
-            playsound('alert.mp3')
-            tm(6)
-            return tripla_alternada_reader+' tripla_alternada encontrado'
-    if len(bunico_reader) != 0:
-
-            print(bunico_reader,'bloco unico encontrado')
-            open('loco_unico.txt','w').truncate(0)
-            playsound('alert.mp3')
-            tm(6)
-            return bunico_reader+' bloco unico encontrado'
-    if len(balternada_reaader) != 0:
-
-            print(balternada_reaader,'bloco alternada encontrado')
-            open('bloco_alternada.txt','w').truncate(0)
-            playsound('alert.mp3')
-            tm(6)
-            return balternada_reaader+' bloco alternada encontrado'
-    if len(bduplo_reader) != 0:
-
-            print(bduplo_reader,'bloco duplo encontrado')
-            open('bloco_alternada.txt','w').truncate(0)
-            playsound('alert.mp3')
-            tm(6)
-            return bduplo_reader+' bloco duplo encontrado'
+    text_actual = init_sound(json_file['sound'],padrao,'padrao')
+    if text_actual != None:
         
-    return None
+        file_reader = open('aux_padrao.txt','r').read()
 
+        if len(file_reader) == 0:
+
+            open('aux_padrao.txt','w').write(text_actual)
+        else:
+            open('aux_padrao.txt','w').write(file_reader+'\n'+text_actual)
+            
+        file_reader = open('aux_padrao.txt','r').read()
+
+
+
+        return file_reader
+    else:
+        file_reader = open('aux_padrao.txt','r').read()
+        return file_reader
+    
+@app.route('/login',methods=['POST'])
+def login():
+    json_file = request.get_json()
+    
+    jsonn = json.loads(json_file)
+    print(type(jsonn))
+    visible = jsonn['visible']
+    user = jsonn['user']
+    password = jsonn['password']
+    login = Login(visible,user,password)
+    login.login()
+
+    return 'Login Terminado'
         
 app.run()
     

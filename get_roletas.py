@@ -9,7 +9,7 @@ import _thread
 from datetime import datetime
 from playsound import playsound
 from selenium import webdriver
-
+from datetime import datetime
 
 class Roll():
     
@@ -297,15 +297,18 @@ class Roll():
 
 
                 print(seguir_roleta,roleta)
-                if seguir_roleta == True:
+                file_block = open('nomes_proibidos.txt','r').read()
+                if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
                         print('oi')
-                        open('padrao.txt','w').write(f'Alternada({names[i]})'+str(roleta))
+                        
+                        f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+'Alternada({names[i]})'+str(roleta))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'Alternada({names[i]})'+str(roleta))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]})'+str(roleta))
     def dupla_alternada(self,giro:int):
 
         names = self.get_names()
@@ -347,16 +350,16 @@ class Roll():
                 json_file_dupla_alternada[names[k]][0]['dupla_alternada'] = ''
                 open(os.getcwd()+self.barra()+'padroes'+self.barra()+'dupla_alternada.json','w').write(json.dumps(json_file_dupla_alternada,indent=4))
 
-                
-                if seguir_roleta == True:
+                file_block = open('nomes_proibidos.txt','r').read()
+                if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
 
-                        open('padrao.txt','w').write(f'Dupla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]})'+str(roleta))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'Dupla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]})'+str(roleta))
     def tripla_alternada(self,giro:int):
         names = self.get_names()
 
@@ -406,15 +409,16 @@ class Roll():
                 open(os.getcwd()+self.barra()+'padroes'+self.barra()+'tripla_alternada.json','w').write(json.dumps(json_file_tripla_alternada,indent=4))
 
                 
-                if seguir_roleta == True:
+                file_block = open('nomes_proibidos.txt','r').read()
+                if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
 
-                        open('padrao.txt','w').write(f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
     def bloco_unico(self,giro:int):
         names = self.get_names()
         try:
@@ -461,16 +465,16 @@ class Roll():
                             seguir_roleta = False
                 
 
-                        
-                    if seguir_roleta == True:
+                    file_block = open('nomes_proibidos.txt','r').read()
+                    if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'Bloco Unico({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]})'+str(roleta))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'Bloco Unico({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]})'+str(roleta))
         except Exception as e:
             print(e)
     def bloco_alternada(self,giro:int):
@@ -529,16 +533,16 @@ class Roll():
 
                     
 
-                        
-                    if seguir_roleta == True:
+                    file_block = open('nomes_proibidos.txt','r').read()
+                    if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'Bloco Alternado({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]})'+str(roleta))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'Bloco Alternado({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]})'+str(roleta))
         except Exception as e:
             print(e)
     def bloco_duplo(self,giro:int):
@@ -603,16 +607,15 @@ class Roll():
 
                     
 
-                        
-                    if seguir_roleta == True:
-
+                    file_block = open('nomes_proibidos.txt','r').read()
+                    if seguir_roleta == True and file_block.find(names[i]) == -1:
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'Bloco Duplo({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]})'+str(roleta))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'Bloco Duplo({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]})'+str(roleta))
         except Exception as e:
             print(e)
     def indentificar_bloco(self,element:str):

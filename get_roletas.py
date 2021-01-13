@@ -306,7 +306,7 @@ class Roll():
                         print('oi')
                         
                         f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'
-                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+'Alternada({names[i]})'+str(roleta))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]})'+str(roleta))
                     else:
                         open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]})'+str(roleta))
     def dupla_alternada(self,giro:int):

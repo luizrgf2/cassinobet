@@ -6,7 +6,7 @@ import json
 import undetected_chromedriver
 from time import sleep as tm
 from login import Login
-from pegar_roletas import Roll
+from get_roletas import Roll
 import _thread
 import platform
 from flask import Flask,request
@@ -44,6 +44,9 @@ def webdriver_complete(visible:bool):
         
     driver = webdriver.Chrome(executable_path=path,chrome_options=options)
     return driver  
+
+driver = webdriver_complete(True)
+
 @app.route('/iniciar',methods=['POST'])
 def init():
     
@@ -65,22 +68,14 @@ def init():
     auth_bunico = file['auth_bunico']
     auth_balternada = file['auth_balternada']
     auth_bduplo = file['auth_bduplo']
-    sound = file['sound']
+    
 
-
-
-    open('alternada.txt','w').truncate(0)
-    open('dupla_alternada.txt','w').truncate(0)
-    open('tripla_alternada.txt','w').truncate(0)
-    open('bloco_unico.txt','w').truncate(0)
-    open('bloco_alternada.txt','w').truncate(0)
-    open('bloco_duplo.txt','w').truncate(0)
 
     
     try:
 
         
-        roll = Roll(user,visible)
+        roll = Roll(user,visible,driver)
         
         _thread.start_new_thread(roll.init,(giro_alternada,giro_dupla_alternada,giro_tripla_alternada,giro_bloco_unico,giro_bloco_alternada,giro_bloco_duplo,auth_alternada,auth_dalternada,auth_talternada,auth_bunico,auth_balternada,auth_bduplo))
         
@@ -94,9 +89,7 @@ def init_sound(sound:bool,text:str,name_file:str):
         if sound == True:
             playsound('alert.mp3')
         open(name_file+'.txt','w').write('')
-        file_reader = open('aux_padrao.txt','r').read().split('\n')
-        if len(file_reader) >8:
-             open('aux_padrao.txt','w').write('')
+
         return text 
 @app.route('/pegarinfo',methods=['POST'])
 def pegar_infos():
@@ -104,7 +97,7 @@ def pegar_infos():
     padrao = ''
 
     
-    names_files = ['alternada','dupla_alternada','tripla_alternada','bloco_unico','bloco_alternada','bloco_duplo']
+    
     
     
     json_file = json.loads(request.get_json())
@@ -135,8 +128,7 @@ def pegar_infos():
         return file_reader
     else:
         file_reader = open('aux_padrao.txt','r').read()
-        return file_reader
-    
+        return file_reader   
 @app.route('/login',methods=['POST'])
 def login():
     json_file = request.get_json()
@@ -146,10 +138,10 @@ def login():
     visible = jsonn['visible']
     user = jsonn['user']
     password = jsonn['password']
-    login = Login(visible,user,password)
-    login.login()
+    login = Login(visible,user,password,driver)
+    open('aux_padrao.txt','w').write('')
 
-    return 'Login Terminado'
+    return login.login()
         
 app.run()
     

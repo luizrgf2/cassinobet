@@ -390,7 +390,7 @@ class Roll():
                 init_red = True
 
             if len(roleta) >=giro-1:
-                
+                roleta.reverse()
                 for i in range(giro -1):
                     
                     if change_state == False:
@@ -424,9 +424,9 @@ class Roll():
 
                     if len(file_reader) == 0:
 
-                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta.reverse()))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta))
     def bloco_unico(self,giro:int):
         names = self.get_names()
         try:

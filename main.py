@@ -87,7 +87,8 @@ def init_sound(sound:bool,text:str,name_file:str):
 
     if len(text) > 2:
         if sound == True:
-            playsound('alert.mp3')
+            _thread.start_new_thread(playsound,('alert.mp3',))
+            tm(0.4)
         open(name_file+'.txt','w').write('')
 
         return text 

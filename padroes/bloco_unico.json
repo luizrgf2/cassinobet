@@ -1,202 +1,202 @@
 {
     "bet365 Premium Roulette": [
         {
-            "bloco_unico": ""
+            "bloco_unico": "29 black,4 black,20 black,9 red,19 red,16 red"
         },
         {
-            "tripla_roleta": "30 red,5 red,21 red"
+            "tripla_roleta": "16 red,19 red,9 red"
         }
     ],
     "bet365 Roulette": [
         {
-            "bloco_unico": "32 red,4 black,27 red"
+            "bloco_unico": "9 red,15 black,31 black,4 black,33 black,12 red,26 black"
         },
         {
-            "tripla_roleta": "27 red,4 black,32 red"
+            "tripla_roleta": "26 black,12 red,33 black"
         }
     ],
     "Quantum Roulette Live": [
         {
-            "bloco_unico": "35 black,9 red,1 red"
+            "bloco_unico": "28 black,9 red,6 black,19 red"
         },
         {
-            "tripla_roleta": "1 red,9 red,35 black"
+            "tripla_roleta": "19 red,6 black,9 red"
         }
     ],
     "Quantum Roulette Italiana": [
         {
-            "bloco_unico": ""
+            "bloco_unico": "6 black,13 black,6 black,15 black,27 red"
         },
         {
-            "tripla_roleta": "2 black,12 red,13 black"
+            "tripla_roleta": "27 red,15 black,6 black"
         }
     ],
     "Roulette": [
         {
-            "bloco_unico": ""
+            "bloco_unico": "18 red,27 red,31 black,14 red,15 black,8 black"
         },
         {
-            "tripla_roleta": "20 black,36 red,14 red"
+            "tripla_roleta": "8 black,15 black,14 red"
         }
     ],
     "Age Of The Gods Bonus Roulette": [
         {
-            "bloco_unico": "34 red,22 black,24 black"
+            "bloco_unico": "26 black,8 black,8 black,27 red,18 red"
         },
         {
-            "tripla_roleta": "24 black,22 black,34 red"
+            "tripla_roleta": "18 red,27 red,8 black"
         }
     ],
     "Football Roulette": [
         {
-            "bloco_unico": "18 red"
+            "bloco_unico": "33 black,1 red,5 red,34 red"
         },
         {
-            "tripla_roleta": "18 red,12 red,0 green"
+            "tripla_roleta": "34 red,5 red,1 red"
         }
     ],
     "Hindi Roulette": [
         {
-            "bloco_unico": "36 red"
+            "bloco_unico": "3 red,25 red,20 black,17 black"
         },
         {
-            "tripla_roleta": "36 red,20 black,0 green"
+            "tripla_roleta": "17 black,20 black,25 red"
         }
     ],
     "Speed Roulette": [
         {
-            "bloco_unico": "13 black"
+            "bloco_unico": "27 red,24 black,30 red,1 red,1 red,22 black"
         },
         {
-            "tripla_roleta": "13 black,31 black,10 black"
+            "tripla_roleta": "22 black,1 red,1 red"
         }
     ],
     "Greek  Roulette": [
         {
-            "bloco_unico": "19 red,2 black"
+            "bloco_unico": "12 red,27 red,21 red,33 black"
         },
         {
-            "tripla_roleta": "2 black,19 red,36 red"
+            "tripla_roleta": "33 black,21 red,27 red"
         }
     ],
     "Turkish Roulette": [
         {
-            "bloco_unico": "11 black,31 black,22 black"
+            "bloco_unico": "7 red,2 black,23 red,4 black"
         },
         {
-            "tripla_roleta": "22 black,31 black,11 black"
+            "tripla_roleta": "4 black,23 red,2 black"
         }
     ],
     "Roleta Brasileira": [
         {
-            "bloco_unico": "4 black,32 red,18 red"
+            "bloco_unico": "16 red,33 black,27 red,24 black"
         },
         {
-            "tripla_roleta": "18 red,32 red,4 black"
+            "tripla_roleta": "24 black,27 red,33 black"
         }
     ],
     "Quantum Auto Roulette": [
         {
-            "bloco_unico": "15 black"
+            "bloco_unico": "1 red,15 black,7 red,29 black"
         },
         {
-            "tripla_roleta": "15 black,21 red,35 black"
+            "tripla_roleta": "29 black,7 red,15 black"
         }
     ],
     "Prestige Roulette": [
         {
-            "bloco_unico": "17 black"
+            "bloco_unico": "16 red,20 black,21 red,36 red,22 black"
         },
         {
-            "tripla_roleta": "17 black,23 red,14 red"
+            "tripla_roleta": "22 black,36 red,21 red"
         }
     ],
     "American Roulette": [
         {
-            "bloco_unico": "9 red"
+            "bloco_unico": "2 black,24 black,27 red,17 black"
         },
         {
-            "tripla_roleta": "9 red,0 green,0 green"
+            "tripla_roleta": "17 black,27 red,24 black"
         }
     ],
     "Spread Bet Roulette": [
         {
-            "bloco_unico": "25 red,14 red"
+            "bloco_unico": "5 red,15 black,28 black,25 red"
         },
         {
-            "tripla_roleta": "14 red,25 red,6 black"
+            "tripla_roleta": "25 red,28 black,15 black"
         }
     ],
     "Deutsches Roulette": [
         {
-            "bloco_unico": "5 red,29 black,25 red"
+            "bloco_unico": "25 red,21 red,4 black,19 red,30 red,23 red"
         },
         {
-            "tripla_roleta": "25 red,29 black,5 red"
+            "tripla_roleta": "23 red,30 red,19 red"
         }
     ],
     "Slingshot": [
         {
-            "bloco_unico": "8 black"
+            "bloco_unico": "21 red,22 black,24 black,1 red"
         },
         {
-            "tripla_roleta": "8 black,3 red,34 red"
+            "tripla_roleta": "1 red,24 black,22 black"
         }
     ],
     "UK Roulette": [
         {
-            "bloco_unico": "36 red"
+            "bloco_unico": "17 black,18 red,5 red,24 black,15 black"
         },
         {
-            "tripla_roleta": "36 red,29 black,35 black"
+            "tripla_roleta": "15 black,24 black,5 red"
         }
     ],
     "Prime Slingshot": [
         {
-            "bloco_unico": "20 black,5 red,29 black"
+            "bloco_unico": "22 black,14 red,17 black,24 black"
         },
         {
-            "tripla_roleta": "29 black,5 red,20 black"
+            "tripla_roleta": "24 black,17 black,14 red"
         }
     ],
     "French Roulette": [
         {
-            "bloco_unico": "20 black"
+            "bloco_unico": "18 red,27 red,31 black,14 red"
         },
         {
-            "tripla_roleta": "20 black,36 red,14 red"
+            "tripla_roleta": "14 red,31 black,27 red"
         }
     ],
     "Triumph Roulette": [
         {
-            "bloco_unico": "10 black,30 red"
+            "bloco_unico": "31 black,14 red,18 red,27 red,14 red"
         },
         {
-            "tripla_roleta": "30 red,10 black,0 green"
+            "tripla_roleta": "14 red,27 red,18 red"
         }
     ],
     "Triumph French Roulette": [
         {
-            "bloco_unico": "10 black,30 red"
+            "bloco_unico": "31 black,14 red,18 red,27 red,14 red"
         },
         {
-            "tripla_roleta": "30 red,10 black,0 green"
+            "tripla_roleta": "14 red,27 red,18 red"
         }
     ],
     "Roulette Italiana": [
         {
-            "bloco_unico": "15 black,30 red"
+            "bloco_unico": "19 red,8 black,2 black,19 red"
         },
         {
-            "tripla_roleta": "30 red,15 black,23 red"
+            "tripla_roleta": "19 red,2 black,8 black"
         }
     ],
     "Football French Roulette": [
         {
-            "bloco_unico": "18 red"
+            "bloco_unico": "33 black,1 red,5 red,34 red"
         },
         {
-            "tripla_roleta": "18 red,12 red,0 green"
+            "tripla_roleta": "34 red,5 red,1 red"
         }
     ]
 }

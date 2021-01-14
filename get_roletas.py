@@ -234,6 +234,13 @@ class Roll():
                     json_bloco_dupla[names[i]][0]['bloco_duplo'] = json_bloco_dupla[names[i]][0]['bloco_duplo']+','+last_num
                 open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_duplo.json','w').write(json.dumps(json_bloco_dupla,indent=4))
             #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+        try:
+            self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[6]/div/div[2]/div[2]/button')
+            self.entry_roletes()
+            self.create_jsons()
+            open('aux_padrao.txt')
+        except:
+            pass
     def create_json(self,name_file):
         nomes = self.get_names()
 
@@ -258,7 +265,7 @@ class Roll():
             self.check_updates()
             if auth_alternada == True:
                 self.alternada(giro_alternada)
-            if auth_balternada == True:
+            if auth_dalternada == True:
                 self.dupla_alternada(giro_dupla_alternada)
             if auth_talternada == True:
                 self.tripla_alternada(giro_tripla_alternada)
@@ -351,6 +358,7 @@ class Roll():
                 open(os.getcwd()+self.barra()+'padroes'+self.barra()+'dupla_alternada.json','w').write(json.dumps(json_file_dupla_alternada,indent=4))
 
                 file_block = open('nomes_proibidos.txt','r').read()
+                print(roleta,seguir_roleta)
                 if seguir_roleta == True and file_block.find(names[i]) == -1:
 
                     file_reader = open('padrao.txt','r').read()

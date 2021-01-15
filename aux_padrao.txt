@@ -1,0 +1,3 @@
+15/1/2021-13:13:25Tripla Alternada(Triumph Roulette)['7 red', '23 red', '2 black', '14 red', '35 black', '30 red', '8 black', '1 red']
+15/1/2021-13:13:25Tripla Alternada(Triumph French Roulette)['7 red', '23 red', '2 black', '14 red', '35 black', '30 red', '8 black', '1 red']
+15/1/2021-13:24:38Tripla Alternada(Slingshot)['3 red', '27 red', '17 black', '12 red', '2 black', '36 red', '8 black', '21 red']

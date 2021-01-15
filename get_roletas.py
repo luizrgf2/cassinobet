@@ -42,15 +42,19 @@ class Roll():
         while True:
             try:
                 self.driver.switch_to_frame(self.driver.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/main/div[1]/iframe'))
+
                 break
             except Exception as e:
                 print(e)
-        tm(3)
-        link = self.driver.find_element_by_id('gamecontent').get_attribute('src')
-        self.driver.get(link)
-        
-        tm(3)
-        
+        while True:
+            try:
+
+                link = self.driver.find_element_by_id('gamecontent').get_attribute('src')
+                self.driver.get(link)
+                break
+            except:
+                pass
+
         
         element = None
         
@@ -65,8 +69,14 @@ class Roll():
         tm(3)
         element.click()
         tm(1)
-        self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
-        tm(10)
+        while True:
+            try:
+                self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
+                break
+            except:
+                pass
+        
+        tm(5)
     def get_names(self):
 
         text = str(self.driver.page_source)
@@ -245,36 +255,40 @@ class Roll():
 
         self.bet365_Premium_Roulette()
         self.bet365_Roulette()
-        self.Quantum_Roulette_Live()
-        self.Quantum_Roulette_Italiana()
+
         self.Roulette()
-        self.Age_Of_The_Gods_Bonus_Roulette()
+
         self.Football_Roulette()
         self.Hindi_Roulette()
         self.Speed_Roulette()
         self.Greek_Roulette()
         self.Turkish_Roulette()
         self.Roleta_Brasileira()
-        self.Quantum_Auto_Roulette()
+
         self.Prestige_Roulette()
-        self.American_Roulette()
+
         self.Spread_Bet_Roulette()
         self.Deutsches_Roulette()
-        self.Slingshot()
-        self.UK_Roulette()
-        self.Prime_Slingshot()
-        self.French_Roulette()
-        self.Triumph_Roulette()
-        self.Triumph_French_Roulette()
-        self.Roulette_Italiana()
-        self.Football_French_Roulette()
 
+        self.UK_Roulette()
+
+
+        self.Triumph_Roulette()
+
+        self.Roulette_Italiana()
+
+        
         try:
-            self.driver.find_element_by_class_name('modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full')
-            self.entry_roletes()
-            self.create_jsons()
+            text = self.driver.execute_script('var a = document.getElementsByClassName("modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full"); return a[0].innerText')
+            if text == 'ok':
+                self.driver.execute_script('var a = document.getElementsByClassName("modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full"); a[0].click()')
+            else:
+
+                self.entry_roletes()
+               
+                self.create_jsons()
         except:
-            pass
+            pass       
     def create_json(self,name_file):
         nomes = self.get_names()
 
@@ -429,25 +443,25 @@ class Roll():
                         if counter_checker <2:
                             counter_checker+=1
 
-                            if roleta.find('red') == -1:
+                            if roleta[i].find('red') == -1:
                                 seguir_roleta = False
 
                         else:
 
                             counter_checker = 0
-                            if roleta.find('black') == -1:
+                            if roleta[i].find('black') == -1:
                                 seguir_roleta = False
                     else:
                         if counter_checker <2:
                             counter_checker+=1
 
-                            if roleta.find('black') == -1:
+                            if roleta[i].find('black') == -1:
                                 seguir_roleta = False
 
                         else:
 
                             counter_checker = 0
-                            if roleta.find('red') == -1:
+                            if roleta[i].find('red') == -1:
                                 seguir_roleta = False
 
                             
@@ -899,148 +913,7 @@ class Roll():
 
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
-            self.update_json_files('bet365 Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
-    def Quantum_Roulette_Live(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-        index = self.get_indicie_roulete('Quantum Roulette Live')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Quantum Roulette Live'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Quantum Roulette Live',tripla_rolete_atual,f'{num_1.text} {color_1}')      
-    def Quantum_Roulette_Italiana(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-
-        index = self.get_indicie_roulete('Quantum Roulette Italiana')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Quantum Roulette Italiana'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Quantum Roulette Italiana',tripla_rolete_atual,f'{num_1.text} {color_1}')    
+            self.update_json_files('bet365 Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')  
     def Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -1112,77 +985,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')   
-    def Age_Of_The_Gods_Bonus_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-
-        index = self.get_indicie_roulete('Age Of The Gods Bonus Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Age Of The Gods Bonus Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Age Of The Gods Bonus Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')     
     def Football_Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -1607,76 +1409,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Roleta Brasileira',tripla_rolete_atual,f'{num_1.text} {color_1}')    
-    def Quantum_Auto_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-        index = self.get_indicie_roulete('Quantum Auto Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Quantum Auto Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Quantum Auto Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}') 
     def Prestige_Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -1746,76 +1478,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Prestige Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
-    def American_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-        index = self.get_indicie_roulete('American Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['American Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('American Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')    
     def Spread_Bet_Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -1957,75 +1619,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Deutsches Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
-    def Slingshot(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-        index = self.get_indicie_roulete('Slingshot')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Slingshot'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Slingshot',tripla_rolete_atual,f'{num_1.text} {color_1}')   
     def UK_Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -2097,146 +1690,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('UK Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
-    def Prime_Slingshot(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-
-        index = self.get_indicie_roulete('Prime Slingshot')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Prime Slingshot'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Prime Slingshot',tripla_rolete_atual,f'{num_1.text} {color_1}')
-    def French_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-        index = self.get_indicie_roulete('French Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['French Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('French Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')  
     def Triumph_Roulette(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -2308,75 +1761,6 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Triumph Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')   
-    def Triumph_French_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-        index = self.get_indicie_roulete('Triumph French Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Triumph French Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Triumph French Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
     def Roulette_Italiana(self):
 
         path = os.getcwd()+self.barra()+'padroes'+self.barra()
@@ -2446,85 +1830,3 @@ class Roll():
         if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
 
             self.update_json_files('Roulette Italiana',tripla_rolete_atual,f'{num_1.text} {color_1}')  
-    def Football_French_Roulette(self):
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-        
-
-
-        index = self.get_indicie_roulete('Football French Roulette')
-
-
-        if index == None:
-            return
-
-        path = os.getcwd()+self.barra()+'padroes'+self.barra()
-
-        roleta = self.driver.find_elements_by_class_name('lobby-table-rol-round-result__container')[index]
-        num_1 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-1]
-        color_1 = num_1.find_element_by_xpath('..').get_attribute('class')
-        num_2 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-2]
-        color_2 = num_2.find_element_by_xpath('..').get_attribute('class')
-        num_3 = roleta.find_elements_by_class_name('lobby-table-rol-round-result__item-number')[-3]
-        color_3 = num_3.find_element_by_xpath('..').get_attribute('class')
-
-        if color_1.find('red') != -1:
-        
-            color_1 = 'red'
-        
-        elif color_1.find('black') != -1:
-            
-            color_1 = 'black'
-        
-        else:
-        
-            color_1 = 'green'
-        
-        
-        
-        if color_2.find('red') != -1:
-        
-            color_2 = 'red'
-        
-        elif color_2.find('black') != -1:
-            
-            color_2 = 'black'
-        
-        else:
-        
-            color_2 = 'green'
-        
-        
-        
-        
-        if color_3.find('red') != -1:
-        
-            color_3 = 'red'
-        
-        elif color_3.find('black') != -1:
-            
-            color_3 = 'black'
-        
-        else:
-        
-            color_3 = 'green'
-
-        json_file_alternada = json.loads(open(path+'alternada.json','r').read())
-        tripla_rolete = json_file_alternada['Football French Roulette'][1]['tripla_roleta']
-        tripla_rolete_atual = f'{num_1.text} {color_1},{num_2.text} {color_2},{num_3.text} {color_3}'
-
-        if tripla_rolete != tripla_rolete_atual and num_1.text !='0':
-
-            self.update_json_files('Football French Roulette',tripla_rolete_atual,f'{num_1.text} {color_1}')
-
-        
-
-
-
-        
-
-
-
-
-        
-

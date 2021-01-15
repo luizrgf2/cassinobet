@@ -1,5 +1,0 @@
-13/1/2021-23:41:40Alternada(Turkish Roulette)['4 black', '23 red', '2 black', '7 red']
-13/1/2021-23:41:44Alternada(Quantum Auto Roulette)['29 black', '7 red', '15 black', '1 red']
-13/1/2021-23:41:54Dupla Alternada(Hindi Roulette)['17 black', '20 black', '25 red', '3 red']
-13/1/2021-23:42:3Alternada(Roleta Brasileira)['24 black', '27 red', '33 black', '16 red']
-13/1/2021-23:42:16Bloco Alternado(Quantum Roulette Italiana)['15 black', '6 black', '13 black', '6 black']

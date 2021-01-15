@@ -1,202 +1,202 @@
 {
     "bet365 Premium Roulette": [
         {
-            "alternada": "19 red,16 red"
+            "alternada": "15 black,23 red,8 black,14 red,24 black,24 black,22 black,16 red,20 black"
         },
         {
-            "tripla_roleta": "16 red,19 red,9 red"
+            "tripla_roleta": "20 black,16 red,22 black"
         }
     ],
     "bet365 Roulette": [
         {
-            "alternada": "33 black,12 red,26 black"
+            "alternada": "1 red,2 black,27 red,31 black,34 red,5 red,15 black,22 black,8 black"
         },
         {
-            "tripla_roleta": "26 black,12 red,33 black"
+            "tripla_roleta": "8 black,22 black,15 black"
         }
     ],
     "Quantum Roulette Live": [
         {
-            "alternada": ""
+            "alternada": "25 red,8 black,6 black,36 red,30 red"
         },
         {
-            "tripla_roleta": "19 red,6 black,9 red"
+            "tripla_roleta": "30 red,36 red,6 black"
         }
     ],
     "Quantum Roulette Italiana": [
         {
-            "alternada": "27 red"
+            "alternada": "23 red,9 red,15 black,8 black,9 red"
         },
         {
-            "tripla_roleta": "27 red,15 black,6 black"
+            "tripla_roleta": "9 red,8 black,15 black"
         }
     ],
     "Roulette": [
         {
-            "alternada": "15 black,8 black"
+            "alternada": "24 black,5 red,21 red,12 red,22 black,18 red,25 red"
         },
         {
-            "tripla_roleta": "8 black,15 black,14 red"
+            "tripla_roleta": "25 red,18 red,22 black"
         }
     ],
     "Age Of The Gods Bonus Roulette": [
         {
-            "alternada": "18 red"
+            "alternada": "2 black,23 red,9 red,28 black,19 red,19 red,20 black"
         },
         {
-            "tripla_roleta": "18 red,27 red,8 black"
+            "tripla_roleta": "20 black,19 red,28 black"
         }
     ],
     "Football Roulette": [
         {
-            "alternada": ""
+            "alternada": "13 black,31 black,21 red,21 red,3 red,9 red,35 black"
         },
         {
-            "tripla_roleta": "34 red,5 red,1 red"
+            "tripla_roleta": "35 black,9 red,3 red"
         }
     ],
     "Hindi Roulette": [
         {
-            "alternada": ""
+            "alternada": "32 red,16 red,30 red,23 red,0 green,20 black"
         },
         {
-            "tripla_roleta": "17 black,20 black,25 red"
+            "tripla_roleta": "20 black,0 green,23 red"
         }
     ],
     "Speed Roulette": [
         {
-            "alternada": "1 red,22 black"
+            "alternada": "26 black,33 black,22 black,22 black,9 red,34 red,34 red,18 red,17 black,30 red,3 red"
         },
         {
-            "tripla_roleta": "22 black,1 red,1 red"
+            "tripla_roleta": "3 red,30 red,17 black"
         }
     ],
     "Greek  Roulette": [
         {
-            "alternada": ""
+            "alternada": "36 red,33 black,24 black,19 red,11 black,9 red"
         },
         {
-            "tripla_roleta": "33 black,21 red,27 red"
+            "tripla_roleta": "9 red,11 black,19 red"
         }
     ],
     "Turkish Roulette": [
         {
-            "alternada": ""
+            "alternada": "21 red,22 black,23 red,7 red,15 black,27 red,14 red"
         },
         {
-            "tripla_roleta": "4 black,23 red,2 black"
+            "tripla_roleta": "14 red,27 red,15 black"
         }
     ],
     "Roleta Brasileira": [
         {
-            "alternada": ""
+            "alternada": "30 red,4 black,28 black,12 red,24 black,34 red,29 black"
         },
         {
-            "tripla_roleta": "24 black,27 red,33 black"
+            "tripla_roleta": "29 black,34 red,24 black"
         }
     ],
     "Quantum Auto Roulette": [
         {
-            "alternada": ""
+            "alternada": "29 black,28 black,36 red,25 red,5 red,30 red"
         },
         {
-            "tripla_roleta": "29 black,7 red,15 black"
+            "tripla_roleta": "30 red,5 red,25 red"
         }
     ],
     "Prestige Roulette": [
         {
-            "alternada": "22 black"
+            "alternada": "5 red,20 black,10 black,17 black,20 black,31 black,17 black,26 black"
         },
         {
-            "tripla_roleta": "22 black,36 red,21 red"
+            "tripla_roleta": "26 black,17 black,31 black"
         }
     ],
     "American Roulette": [
         {
-            "alternada": ""
+            "alternada": "19 red,34 red,25 red,1 red,00 green,14 red"
         },
         {
-            "tripla_roleta": "17 black,27 red,24 black"
+            "tripla_roleta": "14 red,00 green,1 red"
         }
     ],
     "Spread Bet Roulette": [
         {
-            "alternada": ""
+            "alternada": "13 black,31 black,2 black,16 red,4 black,14 red"
         },
         {
-            "tripla_roleta": "25 red,28 black,15 black"
+            "tripla_roleta": "14 red,4 black,16 red"
         }
     ],
     "Deutsches Roulette": [
         {
-            "alternada": "30 red,23 red"
+            "alternada": "30 red,7 red,6 black,25 red,16 red,15 black,8 black,28 black"
         },
         {
-            "tripla_roleta": "23 red,30 red,19 red"
+            "tripla_roleta": "28 black,8 black,15 black"
         }
     ],
     "Slingshot": [
         {
-            "alternada": ""
+            "alternada": "34 red,13 black,15 black,24 black,20 black,19 red"
         },
         {
-            "tripla_roleta": "1 red,24 black,22 black"
+            "tripla_roleta": "19 red,20 black,24 black"
         }
     ],
     "UK Roulette": [
         {
-            "alternada": "15 black"
+            "alternada": "6 black,7 red,25 red,31 black,4 black,22 black,4 black,7 red"
         },
         {
-            "tripla_roleta": "15 black,24 black,5 red"
+            "tripla_roleta": "7 red,4 black,22 black"
         }
     ],
     "Prime Slingshot": [
         {
-            "alternada": ""
+            "alternada": "14 red,0 green,26 black,26 black,8 black,11 black,7 red"
         },
         {
-            "tripla_roleta": "24 black,17 black,14 red"
+            "tripla_roleta": "7 red,11 black,8 black"
         }
     ],
     "French Roulette": [
         {
-            "alternada": ""
+            "alternada": "24 black,5 red,21 red,12 red,22 black,18 red,25 red"
         },
         {
-            "tripla_roleta": "14 red,31 black,27 red"
+            "tripla_roleta": "25 red,18 red,22 black"
         }
     ],
     "Triumph Roulette": [
         {
-            "alternada": "14 red"
+            "alternada": "12 red,18 red,1 red,8 black,8 black,34 red,16 red"
         },
         {
-            "tripla_roleta": "14 red,27 red,18 red"
+            "tripla_roleta": "16 red,34 red,8 black"
         }
     ],
     "Triumph French Roulette": [
         {
-            "alternada": "14 red"
+            "alternada": "12 red,18 red,1 red,8 black,8 black,34 red,16 red"
         },
         {
-            "tripla_roleta": "14 red,27 red,18 red"
+            "tripla_roleta": "16 red,34 red,8 black"
         }
     ],
     "Roulette Italiana": [
         {
-            "alternada": ""
+            "alternada": "26 black,5 red,4 black,28 black,4 black,8 black"
         },
         {
-            "tripla_roleta": "19 red,2 black,8 black"
+            "tripla_roleta": "8 black,4 black,28 black"
         }
     ],
     "Football French Roulette": [
         {
-            "alternada": ""
+            "alternada": "13 black,31 black,21 red,21 red,3 red,9 red,35 black"
         },
         {
-            "tripla_roleta": "34 red,5 red,1 red"
+            "tripla_roleta": "35 black,9 red,3 red"
         }
     ]
 }

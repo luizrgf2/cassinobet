@@ -1,0 +1,116 @@
+Bloco Duplo(Spread Bet Roulette) 28 black,25 red,21 red,16 red
+Alternada(Roulette) 24 black,3 red,20 black,1 red
+Tripla Alternada(Deutsches Roulette) ['29 black', '2 black', '36 red', '28 black', '30 red', '1 red', '1 red', '18 red', '17 black', '18 red', '23 red', '34 red', '12 red', '9 red', '5 red', '8 black', '7 red', '11 black']
+Bloco Alternado(Roulette) 24 black,3 red,20 black,1 red
+Bloco Alternado(Turkish Roulette) 11 black,17 black,8 black,20 black
+Dupla Alternada(Spread Bet Roulette) ['17 black', '28 black', '25 red', '21 red', '16 red', '3 red', '3 red', '11 black', '23 red', '15 black', '36 red', '36 red', '33 black', '32 red']
+Dupla Alternada(UK Roulette) ['15 black', '2 black', '27 red', '21 red', '36 red', '4 black', '4 black', '19 red', '12 red', '32 red', '19 red', '5 red', '23 red', '24 black', '6 black', '26 black', '2 black', '17 black']
+Bloco Alternado(Prestige Roulette) 26 black,12 red,29 black,6 black
+Bloco Duplo(Roleta Brasileira) 6 black,3 red,32 red,26 black
+Alternada(Greek  Roulette) 35 black,36 red,24 black,21 red
+Bloco Duplo(Greek  Roulette) 35 black,36 red,24 black,21 red
+Tripla Alternada(bet365 Premium Roulette) ['12 red', '18 red', '13 black', '7 red', '27 red', '30 red', '12 red', '5 red', '35 black', '29 black', '29 black', '9 red', '29 black', '17 black', '4 black', '14 red', '23 red', '14 red', '30 red']
+Dupla Alternada(Roleta Brasileira) ['33 black', '6 black', '3 red', '32 red', '26 black', '23 red', '25 red', '26 black', '29 black', '27 red', '12 red', '12 red', '9 red', '26 black', '21 red', '8 black', '31 black']
+Bloco Unico(Roulette Italiana) 34 red,25 red,26 black,30 red
+Bloco Alternado(Speed Roulette) 8 black,16 red,5 red,20 black
+Alternada(Roulette) 10 black,14 red,24 black,3 red
+Tripla Alternada(Greek  Roulette) ['6 black', '35 black', '36 red', '24 black', '21 red', '30 red', '8 black', '1 red', '35 black', '15 black', '32 red', '5 red', '35 black', '35 black', '11 black', '17 black']
+Bloco Duplo(Turkish Roulette) 17 black,23 red,11 black,11 black
+Bloco Duplo(bet365 Roulette) 9 red,7 red,34 red,30 red
+Tripla Alternada(UK Roulette) ['4 black', '8 black', '18 red', '15 black', '2 black', '27 red', '21 red', '36 red', '4 black', '4 black', '19 red', '12 red', '32 red', '19 red', '5 red', '23 red', '24 black', '6 black', '26 black', '2 black', '17 black']
+Bloco Duplo(Roleta Brasileira) 28 black,33 black,6 black,3 red
+Bloco Duplo(UK Roulette) 4 black,8 black,18 red,15 black
+Dupla Alternada(Football Roulette) ['20 black', '15 black', '5 red', '18 red', '35 black', '31 black', '28 black', '11 black', '32 red', '14 red', '27 red', '7 red', '30 red', '3 red', '35 black', '31 black']
+Bloco Alternado(Deutsches Roulette) 6 black,36 red,10 black,26 black
+Alternada(Speed Roulette) 17 black,25 red,8 black,16 red
+Tripla Alternada(Turkish Roulette) ['11 black', '17 black', '23 red', '11 black', '11 black', '17 black', '8 black', '20 black', '4 black', '36 red', '22 black', '28 black', '36 red', '29 black', '36 red', '22 black', '31 black', '17 black']
+Bloco Alternado(Hindi Roulette) 3 red,34 red,4 black,31 black
+Bloco Alternado(Spread Bet Roulette) 18 red,31 black,17 black,28 black
+Bloco Alternado(Deutsches Roulette) 34 red,6 black,36 red,10 black
+Bloco Unico(UK Roulette) 12 red,1 red,4 black,8 black
+Alternada(Deutsches Roulette) 31 black,34 red,6 black,36 red
+Tripla Alternada(bet365 Premium Roulette) ['32 red', '21 red', '24 black', '36 red', '12 red', '18 red', '13 black', '7 red', '27 red', '30 red', '12 red', '5 red', '35 black', '29 black', '29 black', '9 red', '29 black', '17 black', '4 black', '14 red', '23 red', '14 red', '30 red']
+Bloco Alternado(Roulette Italiana) 19 red,28 black,16 red,34 red
+Alternada(Roulette) 15 black,34 red,10 black,14 red
+Bloco Alternado(Turkish Roulette) 9 red,13 black,11 black,17 black
+Bloco Alternado(Prestige Roulette) 5 red,16 red,1 red,14 red
+Tripla Alternada(Deutsches Roulette) ['24 black', '31 black', '34 red', '6 black', '36 red', '10 black', '26 black', '29 black', '2 black', '36 red', '28 black', '30 red', '1 red', '1 red', '18 red', '17 black', '18 red', '23 red', '34 red', '12 red', '9 red', '5 red', '8 black', '7 red', '11 black']
+Bloco Duplo(Football Roulette) 12 red,12 red,20 black,15 black
+Bloco Duplo(Speed Roulette) 30 red,35 black,3 red,7 red
+Alternada(UK Roulette) 35 black,36 red,24 black,12 red
+Alternada(Hindi Roulette) 8 black,30 red,22 black,3 red
+Alternada(Speed Roulette) 13 black,30 red,35 black,3 red
+Tripla Alternada(Turkish Roulette) ['6 black', '8 black', '9 red', '13 black', '11 black', '17 black', '23 red', '11 black', '11 black', '17 black', '8 black', '20 black', '4 black', '36 red', '22 black', '28 black', '36 red', '29 black', '36 red', '22 black', '31 black', '17 black']
+Alternada(bet365 Roulette) 26 black,7 red,29 black,36 red
+Tripla Alternada(UK Roulette) ['31 black', '35 black', '36 red', '24 black', '12 red', '1 red', '4 black', '8 black', '18 red', '15 black', '2 black', '27 red', '21 red', '36 red', '4 black', '4 black', '19 red', '12 red', '32 red', '19 red', '5 red', '23 red', '24 black', '6 black', '26 black', '2 black', '17 black']
+Tripla Alternada(Speed Roulette) ['24 black', '13 black', '30 red', '35 black', '3 red', '7 red', '7 red', '17 black', '25 red', '8 black', '16 red', '5 red', '20 black', '29 black', '2 black', '2 black', '1 red', '31 black']
+Bloco Duplo(Speed Roulette) 24 black,13 black,30 red,35 black
+Bloco Duplo(Spread Bet Roulette) 1 red,11 black,24 black,18 red
+Bloco Duplo(Triumph Roulette) 23 red,23 red,25 red,36 red
+Bloco Alternado(Roulette) 7 red,19 red,8 black,15 black
+Tripla Alternada(bet365 Premium Roulette) ['21 red', '21 red', '33 black', '1 red', '32 red', '21 red', '24 black', '36 red', '12 red', '18 red', '13 black', '7 red', '27 red', '30 red', '12 red', '5 red', '35 black', '29 black', '29 black', '9 red', '29 black', '17 black', '4 black', '14 red', '23 red', '14 red', '30 red']
+Tripla Alternada(bet365 Roulette) ['4 black', '26 black', '7 red', '29 black', '36 red', '14 red', '32 red', '9 red', '7 red', '34 red', '30 red', '33 black', '23 red', '5 red', '17 black', '24 black', '11 black', '23 red', '25 red', '14 red', '3 red', '26 black', '4 black', '8 black', '19 red', '7 red', '1 red', '11 black']
+Bloco Unico(UK Roulette) 26 black,31 black,35 black,36 red
+Bloco Alternado(bet365 Roulette) 4 black,26 black,7 red,29 black
+Bloco Duplo(Roleta Brasileira) 3 red,8 black,27 red,31 black
+Bloco Duplo(Speed Roulette) 35 black,28 black,24 black,13 black
+Bloco Unico(UK Roulette) 27 red,26 black,31 black,35 black
+Tripla Alternada(Hindi Roulette) ['9 red', '3 red', '8 black', '30 red', '22 black', '3 red', '34 red', '4 black', '31 black', '30 red', '28 black', '20 black', '4 black', '26 black', '1 red', '26 black', '7 red', '11 black', '18 red', '23 red']
+Dupla Alternada(Prestige Roulette) ['28 black', '10 black', '14 red', '12 red', '5 red', '16 red', '1 red', '14 red', '26 black', '12 red', '29 black', '6 black', '21 red', '16 red', '12 red', '1 red', '36 red', '21 red', '6 black', '15 black', '11 black', '4 black', '2 black', '4 black', '4 black']
+Alternada(Deutsches Roulette) 22 black,16 red,29 black,19 red
+Dupla Alternada(Football Roulette) ['20 black', '31 black', '12 red', '12 red', '20 black', '15 black', '5 red', '18 red', '35 black', '31 black', '28 black', '11 black', '32 red', '14 red', '27 red', '7 red', '30 red', '3 red', '35 black', '31 black']
+Dupla Alternada(Triumph Roulette) ['33 black', '29 black', '23 red', '23 red', '25 red', '36 red', '30 red', '4 black', '27 red', '21 red', '23 red', '9 red', '21 red', '21 red', '33 black', '8 black', '3 red', '29 black', '12 red', '23 red', '27 red', '21 red', '17 black', '13 black']
+Dupla Alternada(Roulette Italiana) ['17 black', '11 black', '30 red', '21 red', '19 red', '28 black', '16 red', '34 red', '25 red', '26 black', '30 red', '16 red', '7 red', '36 red', '20 black', '20 black', '13 black', '30 red', '30 red', '18 red', '23 red', '23 red', '30 red', '13 black', '18 red', '13 black']
+Bloco Duplo(Triumph Roulette) 33 black,29 black,23 red,23 red
+Alternada(Roleta Brasileira) 33 black,3 red,8 black,27 red
+Bloco Unico(UK Roulette) 31 black,27 red,26 black,31 black
+Dupla Alternada(Roulette) ['8 black', '4 black', '7 red', '19 red', '8 black', '15 black', '34 red', '10 black', '14 red', '24 black', '3 red', '20 black', '1 red', '19 red', '2 black', '29 black', '17 black', '10 black', '29 black', '22 black', '14 red', '31 black', '33 black', '16 red']
+Bloco Unico(UK Roulette) 25 red,31 black,27 red,26 black
+Bloco Duplo(bet365 Roulette) 16 red,18 red,11 black,4 black
+Bloco Duplo(Roleta Brasileira) 27 red,33 black,3 red,8 black
+Alternada(Turkish Roulette) 2 black,21 red,17 black,25 red
+Alternada(UK Roulette) 11 black,25 red,31 black,27 red
+Bloco Alternado(Prestige Roulette) 32 red,6 black,28 black,10 black
+Bloco Unico(Triumph Roulette) 33 black,33 black,33 black,29 black
+Dupla Alternada(bet365 Premium Roulette) ['13 black', '33 black', '18 red', '21 red', '21 red', '33 black', '1 red', '32 red', '21 red', '24 black', '36 red', '12 red', '18 red', '13 black', '7 red', '27 red', '30 red', '12 red', '5 red', '35 black', '29 black', '29 black', '9 red', '29 black', '17 black', '4 black', '14 red', '23 red', '14 red', '30 red']
+Bloco Alternado(Deutsches Roulette) 36 red,17 black,35 black,22 black
+Dupla Alternada(bet365 Premium Roulette) ['13 black', '33 black', '18 red', '21 red', '21 red', '33 black', '1 red', '32 red', '21 red', '24 black', '36 red', '12 red', '18 red', '13 black', '7 red']
+Dupla Alternada(bet365 Roulette) ['33 black', '11 black', '16 red', '18 red', '11 black', '4 black', '26 black', '7 red', '29 black', '36 red', '14 red', '32 red', '9 red', '7 red', '34 red', '30 red', '33 black', '23 red']
+Bloco Alternado(Prestige Roulette) 3 red,32 red,6 black,28 black
+Bloco Duplo(Speed Roulette) 28 black,32 red,3 red,4 black
+Bloco Alternado(Spread Bet Roulette) 33 black,2 black,28 black,8 black
+Alternada(UK Roulette) 22 black,34 red,11 black,25 red
+Bloco Alternado(bet365 Premium Roulette) 35 black,13 black,33 black,18 red
+Alternada(Roulette Italiana) 4 black,16 red,8 black,7 red
+Dupla Alternada(Hindi Roulette) ['26 black', '10 black', '14 red', '34 red', '9 red', '3 red', '8 black', '30 red', '22 black', '3 red', '34 red', '4 black', '31 black', '30 red', '28 black', '20 black', '4 black', '26 black', '1 red', '26 black', '7 red', '11 black', '18 red', '23 red']
+Bloco Unico(Speed Roulette) 25 red,25 red,28 black,32 red
+Tripla Alternada(Football Roulette) ['31 black', '4 black', '32 red', '4 black', '20 black', '31 black', '12 red', '12 red', '20 black', '15 black', '5 red', '18 red', '35 black', '31 black', '28 black', '11 black', '32 red', '14 red', '27 red', '7 red', '30 red', '3 red', '35 black', '31 black']
+Bloco Alternado(Football Roulette) 31 black,4 black,32 red,4 black
+Bloco Duplo(Roleta Brasileira) 18 red,17 black,34 red,27 red
+Bloco Alternado(Roulette) 33 black,13 black,29 black,13 black
+Dupla Alternada(Speed Roulette) ['20 black', '20 black', '25 red', '25 red', '28 black', '32 red', '3 red', '4 black', '22 black', '35 black', '28 black', '24 black', '13 black', '30 red', '35 black', '3 red', '7 red', '7 red', '17 black', '25 red', '8 black', '16 red', '5 red', '20 black', '29 black', '2 black', '2 black', '1 red', '31 black']
+Tripla Alternada(Deutsches Roulette) ['3 red', '30 red', '35 black', '36 red', '17 black', '35 black', '22 black', '16 red', '29 black', '19 red', '11 black', '24 black', '31 black', '34 red', '6 black', '36 red', '10 black', '26 black', '29 black', '2 black', '36 red']
+Bloco Duplo(Speed Roulette) 20 black,20 black,25 red,25 red
+Alternada(Roleta Brasileira) 35 black,18 red,17 black,34 red
+Dupla Alternada(Prestige Roulette) ['8 black', '13 black', '18 red', '3 red', '32 red', '6 black', '28 black', '10 black', '14 red', '12 red', '5 red', '16 red', '1 red', '14 red', '26 black', '12 red']
+Bloco Unico(UK Roulette) 24 black,14 red,17 black,22 black
+Tripla Alternada(Roulette Italiana) ['12 red', '25 red', '4 black', '16 red', '8 black', '7 red', '17 black', '11 black', '30 red', '21 red', '19 red', '28 black', '16 red', '34 red', '25 red', '26 black', '30 red']
+Bloco Duplo(bet365 Premium Roulette) 17 black,18 red,33 black,35 black
+Dupla Alternada(Turkish Roulette) ['33 black', '8 black', '19 red', '21 red', '2 black', '21 red', '17 black', '25 red', '6 black', '8 black', '9 red', '13 black', '11 black', '17 black', '23 red', '11 black', '11 black', '17 black', '8 black', '20 black', '4 black', '36 red', '22 black', '28 black', '36 red', '29 black', '36 red', '22 black', '31 black', '17 black']
+Dupla Alternada(Turkish Roulette) ['33 black', '8 black', '19 red', '21 red', '2 black', '21 red', '17 black', '25 red', '6 black', '8 black', '9 red', '13 black', '11 black', '17 black', '23 red']
+Bloco Duplo(Roleta Brasileira) 34 red,35 black,18 red,17 black
+Dupla Alternada(Deutsches Roulette) ['26 black', '28 black', '3 red', '30 red', '35 black', '36 red', '17 black', '35 black', '22 black', '16 red', '29 black', '19 red', '11 black', '24 black', '31 black', '34 red', '6 black', '36 red', '10 black', '26 black', '29 black', '2 black', '36 red']
+Bloco Alternado(Football Roulette) 5 red,31 black,4 black,32 red
+Bloco Duplo(Triumph Roulette) 27 red,27 red,18 red,14 red
+Bloco Alternado(Speed Roulette) 10 black,14 red,9 red,20 black
+Bloco Duplo(Spread Bet Roulette) 19 red,13 black,32 red,33 black
+Alternada(Roleta Brasileira) 28 black,34 red,35 black,18 red
+Alternada(UK Roulette) 11 black,30 red,24 black,14 red
+Bloco Unico(Roulette) 36 red,25 red,26 black,33 black
+Alternada(Spread Bet Roulette) 22 black,19 red,13 black,32 red
+Tripla Alternada(Football Roulette) ['17 black', '17 black', '5 red', '31 black', '4 black', '32 red', '4 black', '20 black', '31 black', '12 red', '12 red', '20 black', '15 black', '5 red', '18 red', '35 black', '31 black', '28 black', '11 black', '32 red', '14 red', '27 red', '7 red', '30 red', '3 red', '35 black', '31 black']
+Tripla Alternada(Speed Roulette) ['23 red', '12 red', '10 black', '14 red', '9 red', '20 black', '20 black', '25 red', '25 red', '28 black', '32 red', '3 red', '4 black', '22 black', '35 black', '28 black', '24 black', '13 black', '30 red']
+Bloco Alternado(bet365 Premium Roulette) 35 black,23 red,35 black,17 black
+Bloco Unico(Triumph Roulette) 30 red,25 red,27 red,27 red
+Bloco Duplo(Roleta Brasileira) 12 red,1 red,28 black,34 red
+Alternada(Deutsches Roulette) 15 black,19 red,6 black,27 red

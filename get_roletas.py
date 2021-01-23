@@ -278,17 +278,49 @@ class Roll():
         self.Roulette_Italiana()
 
         
-        try:
-            text = self.driver.execute_script('var a = document.getElementsByClassName("modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full"); return a[0].innerText')
-            if text == 'ok':
-                self.driver.execute_script('var a = document.getElementsByClassName("modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full"); a[0].click()')
-            else:
 
-                self.entry_roletes()
-               
-                self.create_jsons()
-        except:
-            pass       
+        verificar_roleta_fechada = self.driver.execute_script('''function detect_close_roulete(){
+
+
+        let button = document.getElementsByClassName('modal-footer-btn modal-footer-btn_resolve modal-footer-btn_full')
+        let result = false
+
+        for(let i =0 ; i <button.length;i++){
+            if (button[i] != undefined){
+
+
+                if(button[i].innerHTML == "Ok"){
+
+
+                    button[i].click()
+                    
+                    
+                }else if (button[i].innerHTML == "Close" || button[i].innerHTML == "Fechar"){
+                    
+                    
+                    button[i].click()
+                    result =  true
+
+
+                }
+
+            }
+        }
+        return result
+
+
+
+        } return detect_close_roulete()''')
+
+
+        print('Estado da roleta',verificar_roleta_fechada)
+
+        if verificar_roleta_fechada == True:
+
+            self.entry_roletes()
+            self.create_jsons()
+
+
     def create_json(self,name_file):
         nomes = self.get_names()
 
@@ -332,13 +364,23 @@ class Roll():
             json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'alternada.json','r').read())
             roleta = str(json_file_alternada[names[i]][0]['alternada']).split(',')
             seguir_roleta = True
+            roleta_final = ''
 
             if len(roleta) >=giro-1:
                 roleta.reverse()
+                
                 for k in range(giro-1):
+                    
+                    
+                    if len(roleta_final) ==0:
 
+                        roleta_final = roleta[k]
+                        
+                    else:
+                        roleta_final= roleta_final+','+roleta[k]
+                    
                     if k % 2 == 0:
-
+                        
                         if roleta[k].find('black') == -1:
 
                             seguir_roleta = False
@@ -347,23 +389,20 @@ class Roll():
                         if roleta[k].find('red') == -1:
 
                             seguir_roleta = False
-                json_file_alternada[names[i]][0]['alternada'] = ''
-                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'alternada.json','w').write(json.dumps(json_file_alternada,indent=4))
-
+                
+                self.reiniciar_roleta(roleta,names[i],'alternada')
 
                 print(seguir_roleta,roleta)
-                file_block = open('nomes_proibidos.txt','r').read()
-                if seguir_roleta == True and file_block.find(names[i]) == -1:
+                if seguir_roleta == True and self.indentificar_repeticoes(f'Alternada({names[i]}) '+str(roleta_final)):
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
-                        print('oi')
                         
                         f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'
-                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]})'+str(roleta))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]}) '+str(roleta_final))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]})'+str(roleta))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Alternada({names[i]}) '+str(roleta_final))
     def dupla_alternada(self,giro:int):
 
         names = self.get_names()
@@ -377,11 +416,18 @@ class Roll():
             
             seguir_roleta = True
             change_state = False
+            roleta_final = ''
 
             if len(roleta) >=giro-1:
                 roleta.reverse()
                 for i in range(giro -1):
-                    
+
+                    if len(roleta_final) == 0:
+                        roleta_final = roleta[i]
+                    else:
+                        roleta_final = roleta_final+','+roleta[i]
+
+
                     if change_state == False:
 
                         if roleta[i].find('black') == -1:
@@ -402,20 +448,19 @@ class Roll():
 
                             change_state = False                    
                 print(names[k],roleta)
-                json_file_dupla_alternada[names[k]][0]['dupla_alternada'] = ''
-                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'dupla_alternada.json','w').write(json.dumps(json_file_dupla_alternada,indent=4))
+                
+                self.reiniciar_roleta(roleta,names[k],'dupla_alternada')
 
-                file_block = open('nomes_proibidos.txt','r').read()
                 print(roleta,seguir_roleta)
-                if seguir_roleta == True and file_block.find(names[i]) == -1:
+                if seguir_roleta == True and self.indentificar_repeticoes(f'Dupla Alternada({names[k]}) '+str(roleta)):
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
 
-                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]}) '+str(roleta_final))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Dupla Alternada({names[k]}) '+str(roleta_final))
     def tripla_alternada(self,giro:int):
         names = self.get_names()
 
@@ -432,11 +477,19 @@ class Roll():
             if roleta[0].find('red') != -1:
                 init_red = True
                 
-
+            roleta_final = ''
 
             if len(roleta) >=giro-1:
                 roleta.reverse()
+
+
+
+
                 for i in range(giro -1):
+                    if len(roleta_final) == 0:
+                        roleta_final = roleta[i]
+                    else:
+                        roleta_final = roleta_final+","+roleta[i]
                     
                     if init_red == True:
 
@@ -471,20 +524,17 @@ class Roll():
 
 
                 print(names[k],roleta)
-                json_file_tripla_alternada[names[k]][0]['tripla_alternada'] = ''
-                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'tripla_alternada.json','w').write(json.dumps(json_file_tripla_alternada,indent=4))
-
+                self.reiniciar_roleta(roleta,names[k],'tripla_alternada')
                 
-                file_block = open('nomes_proibidos.txt','r').read()
-                if seguir_roleta == True and file_block.find(names[i]) == -1:
+                if seguir_roleta == True and self.indentificar_repeticoes(f'Tripla Alternada({names[k]}) '+str(roleta)):
 
                     file_reader = open('padrao.txt','r').read()
 
                     if len(file_reader) == 0:
 
-                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]}) '+str(roleta_final))
                     else:
-                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]})'+str(roleta))
+                        open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Tripla Alternada({names[k]}) '+str(roleta_final))
     def bloco_unico(self,giro:int):
         names = self.get_names()
         try:
@@ -495,14 +545,21 @@ class Roll():
 
 
                 seguir_roleta = True
-
+                roleta_final = ''
                 if len(roleta) >= giro -1:
 
                     roleta.reverse()
-                    json_file_bloco_unico[names[k]][0]['bloco_unico'] = ''
-                    open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_unico.json','w').write(json.dumps(json_file_bloco_unico,indent=4))
+                    
+                    
                     bloco = self.indentificar_bloco(roleta[0])
+                    self.reiniciar_roleta(roleta,names[k],'bloco_unico')
                     for i in range(giro -1):
+                        
+
+                        if len(roleta_final) == 0:
+                            roleta_final = roleta[i]
+                        else:
+                            roleta_final = roleta_final+','+roleta[i]
 
                         bloco_atual = self.indentificar_bloco(roleta[i])
 
@@ -531,16 +588,15 @@ class Roll():
                             seguir_roleta = False
                 
 
-                    file_block = open('nomes_proibidos.txt','r').read()
-                    if seguir_roleta == True and file_block.find(names[i]) == -1:
+                    if seguir_roleta == True and self.indentificar_repeticoes(f'Bloco Unico({names[k]}) '+str(roleta_final)):
 
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]}) '+str(roleta_final))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Unico({names[k]}) '+str(roleta_final))
         except Exception as e:
             print(e)
     def bloco_alternada(self,giro:int):
@@ -551,17 +607,23 @@ class Roll():
                 roleta = str(json_file_bloco_alternada[names[k]][0]['bloco_alternada']).split(',')
 
                 seguir_roleta = True
+                roleta_final = ''
 
                 if len(roleta) >= giro -1:
                     
                     roleta.reverse()
-                    json_file_bloco_alternada[names[k]][0]['bloco_alternada'] = ''
-                    open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_alternada.json','w').write(json.dumps(json_file_bloco_alternada,indent=4))
+                    self.reiniciar_roleta(roleta,names[k],'bloco_alternada')
+                    
                     bloco_1 = self.indentificar_bloco(roleta[0])
                     bloco_2 = self.indentificar_bloco(roleta[1])
-    
 
                     for i in range(giro -1):
+
+                        if len(roleta_final) == 0:
+                            roleta_final = roleta[i]
+                        else:
+                            roleta_final = roleta_final+","+roleta[i]
+
 
                         bloco_atual = self.indentificar_bloco(roleta[i])
                         if i % 2 == 0:
@@ -599,16 +661,15 @@ class Roll():
 
                     
 
-                    file_block = open('nomes_proibidos.txt','r').read()
-                    if seguir_roleta == True and file_block.find(names[i]) == -1:
+                    if seguir_roleta == True and self.indentificar_repeticoes(f'Bloco Alternado({names[k]}) '+str(roleta_final)):
 
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]}) '+str(roleta_final))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Alternado({names[k]}) '+str(roleta_final))
         except Exception as e:
             print(e)
     def bloco_duplo(self,giro:int):
@@ -620,15 +681,22 @@ class Roll():
   
 
                 seguir_roleta = True
+                roleta_final = ''
 
                 if len(roleta) >= giro -1:
                     roleta.reverse()
-                    json_file_bloco_duplo[names[k]][0]['bloco_duplo'] = ''
-                    open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_duplo.json','w').write(json.dumps(json_file_bloco_duplo,indent=4))
+                    
+                    self.reiniciar_roleta(roleta,names[k],'bloco_duplo')
+                    
                     bloco_1 = self.indentificar_bloco(roleta[0])
                     bloco_2 = self.indentificar_bloco(roleta[2])
                     change_state = False
                     for i in range(giro -1):
+
+                        if len(roleta_final) == 0:
+                            roleta_final = roleta[i]
+                        else:
+                            roleta_final = roleta_final+','+roleta[i]
 
                         bloco_atual = self.indentificar_bloco(roleta[i])
                         if change_state == False:
@@ -673,15 +741,14 @@ class Roll():
 
                     
 
-                    file_block = open('nomes_proibidos.txt','r').read()
-                    if seguir_roleta == True and file_block.find(names[i]) == -1:
+                    if seguir_roleta == True and self.indentificar_repeticoes(f'Bloco Duplo({names[k]}) '+str(roleta_final)):
                         file_reader = open('padrao.txt','r').read()
 
                         if len(file_reader) == 0:
 
-                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]}) '+str(roleta_final))
                         else:
-                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]})'+str(roleta))
+                            open('padrao.txt','w').write(file_reader+'\n'+f'{datetime.now().day}/{datetime.now().month}/{datetime.now().year}-{datetime.now().hour}:{datetime.now().minute}:{datetime.now().second}'+f'Bloco Duplo({names[k]}) '+str(roleta_final))
         except Exception as e:
             print(e)
     def indentificar_bloco(self,element:str):
@@ -778,6 +845,114 @@ class Roll():
                 
                 result =  i
         return result
+    def indentificar_repeticoes(self,text:str):
+        file_reader = open('repeticao.txt','r').read()
+
+        if len(file_reader.split('\n')) > 200:
+
+            open('repeticao.txt','w').write('')
+
+        if file_reader.find(text) == -1:
+            if len(file_reader) == 0:
+                file_reader = text
+            else:
+                file_reader = file_reader+'\n'+text
+            open('repeticao.txt','w').write(file_reader)
+            return True
+        else:
+            return False           
+    def reiniciar_roleta(self,roleta:list,name_roleta:str,padrao_roleta:str):
+
+        if padrao_roleta == 'alternada':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'alternada.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['alternada'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['alternada'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'alternada.json','w').write(json.dumps(json_file_alternada,indent=4))
+        elif padrao_roleta == 'dupla_alternada':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'dupla_alternada.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['dupla_alternada'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['dupla_alternada'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'dupla_alternada.json','w').write(json.dumps(json_file_alternada,indent=4))
+        elif padrao_roleta == 'tripla_alternada':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'tripla_alternada.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['tripla_alternada'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['tripla_alternada'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'tripla_alternada.json','w').write(json.dumps(json_file_alternada,indent=4))
+        elif padrao_roleta == 'bloco_unico':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_unico.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['bloco_unico'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['bloco_unico'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_unico.json','w').write(json.dumps(json_file_alternada,indent=4))
+        elif padrao_roleta == 'bloco_alternada':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_alternada.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['bloco_alternada'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['bloco_alternada'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_alternada.json','w').write(json.dumps(json_file_alternada,indent=4))
+        elif padrao_roleta == 'bloco_duplo':
+
+            json_file_alternada = json.loads(open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_duplo.json','r').read())
+            lista_numbers = json_file_alternada[name_roleta][0]['bloco_duplo'].split(',')
+            roleta_renovada = ''
+            if len(lista_numbers) >=30:
+
+                for i in range(15,30):
+
+                    if len(roleta_renovada) == 0:
+                        roleta_renovada = lista_numbers[i]
+                    else:
+                        roleta_renovada = roleta_renovada+','+lista_numbers[i]
+                json_file_alternada[name_roleta][0]['bloco_duplo'] = roleta_renovada
+                open(os.getcwd()+self.barra()+'padroes'+self.barra()+'bloco_duplo.json','w').write(json.dumps(json_file_alternada,indent=4))
     def bet365_Premium_Roulette(self):
 
         index = self.get_indicie_roulete('bet365 Premium Roulette')

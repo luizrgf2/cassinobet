@@ -134,11 +134,13 @@ def pegar_infos():
 def login():
     json_file = request.get_json()
     
-    jsonn = json.loads(json_file)
-    print(type(jsonn))
-    visible = jsonn['visible']
-    user = jsonn['user']
-    password = jsonn['password']
+    print(json_file)
+    
+    json_aux = json.loads(json_file)
+
+    visible = json_aux['visible']
+    user = json_aux['user']
+    password = json_aux['password']
     login = Login(visible,user,password,driver)
     open('aux_padrao.txt','w').write('')
 

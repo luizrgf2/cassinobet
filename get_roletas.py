@@ -55,26 +55,36 @@ class Roll():
             except:
                 pass
 
+        tm(5)
         
-        element = None
-        
-            
-        while True:
-            
-            try:
-                element = self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[1]/div[1]/ul/li[1]')
-                break
-            except:
-                print()   
-        tm(3)
-        element.click()
-        tm(1)
         while True:
             try:
-                self.driver.find_element_by_xpath('/html/body/div[1]/div/div[3]/div[1]/div[2]/div[4]/div/div/div[1]/div/div/ul[1]/li[1]/span').click()
+                self.driver.find_element_by_class_name('lobby-tables__item')
                 break
             except:
-                pass
+                self.driver.execute_script('''
+
+                    var button = document.getElementsByClassName("sidebar-buttons__item sidebar-buttons__menu")[0]
+                    
+                    if(button != undefined){
+                        
+                        button.click()
+                        
+                    }
+                    
+                    
+                    
+                    setTimeout(()=>{},2000)
+                    
+                    var loby = document.getElementsByClassName("main-menu__item")[0]
+                    
+                    if(loby !=undefined){
+                        loby.click()
+                    }
+ 
+            ''')
+                tm(1)
+        
         
         tm(5)
     def get_names(self):
@@ -318,9 +328,7 @@ class Roll():
         if verificar_roleta_fechada == True:
 
             self.entry_roletes()
-            self.create_jsons()
-
-
+            self.create_jsons()        
     def create_json(self,name_file):
         nomes = self.get_names()
 
